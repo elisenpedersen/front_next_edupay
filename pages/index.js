@@ -9,7 +9,7 @@ export default function Home() {
           </Head>
           <h1>Main page</h1>
           <h2>
-              <Link href="/dashboard/dashboard"> Dashboard → </Link>
+              <Link href="/dashboard/dashboard"> Dashboard for noobs → </Link>
           </h2>
 
       </>
