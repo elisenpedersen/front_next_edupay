@@ -11,12 +11,7 @@ export default function Register() {
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // prevent the default behavior of the form, lei que era buena practica pero no se bien que es el default behavior
-
-        if(!email || !password){ // if email or password is empty
-            setError("Please fill in all fields");
-            return;
-        }
+        e.preventDefault(); // prevent the default behavior of the form
 
         const res = await fetch("https://localhost:3000/register", {//http solicitation
             method: "POST", // Uso el metodo POST que es para agregar datos
@@ -29,7 +24,7 @@ export default function Register() {
             }),
         })  
 
-        const data = await res.json();
+        const data = await res.json(); //analizo la respuesta como JSON
 
         if (res.ok) {
             console.log('User registered:', data.user);
@@ -54,13 +49,13 @@ export default function Register() {
                         type="email"
                         placeholder="Email"
                         className={styles.input}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
                         required
                     />
                 </div>
                 <div className={styles.formGroup}>
-                <div className={styles.passwordContainer}>
+                    <div className={styles.passwordContainer}>
                         <input
                             type={passwordVisible ? "text" : "password"}
                             placeholder="Password"
