@@ -42,8 +42,46 @@
     background-color: #0056b3;
 }
 
+.passwordContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordContainer.input {
+    flex: 1;
+}
+
+.toggleButton{
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #0070f3;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.toggleButton:hover {
+    text-decoration: underline;
+}
+
+.linkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.linkWrapper {
+    margin-top: 10px;
+}
+
 .link {
     color: #0070f3;
-    margin-top: 15px;
-    display: inline-block;
+    text-decoration: nose;
+}
+
+.link:hover {
+    text-decoration: underline;
 }
