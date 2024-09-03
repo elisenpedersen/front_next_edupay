@@ -16,7 +16,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appi/login`, {
+        const res = await fetch(`https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/appi/login`, {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
