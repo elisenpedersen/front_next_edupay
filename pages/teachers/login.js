@@ -4,6 +4,10 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -15,7 +19,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
-        const res = await fetch("http://localhost:3000/appi/login", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appi/login`, {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
