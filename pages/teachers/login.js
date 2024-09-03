@@ -5,9 +5,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export default function Login() {
     const [email, setEmail] = useState("");
