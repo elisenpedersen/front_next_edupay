@@ -19,6 +19,11 @@ export default function Home() {
                     Login →
                 </Link>
             </h2>
+            <h2>
+                <Link href="/payment/pay" className={styles.link}>
+                    Payment Methods →
+                </Link>
+            </h2>
         </div>
     );
 }

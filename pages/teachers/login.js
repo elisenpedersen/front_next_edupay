@@ -15,7 +15,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
-        const res = await fetch("http://localhost:3000/login", {
+        const res = await fetch("http://localhost:3000/appi/login", {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
