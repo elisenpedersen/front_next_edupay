@@ -7,20 +7,26 @@ import styles from '../../styles/Login.module.css';
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [cellphone, setCellphone] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
-        const res = await fetch("https://localhost:3000/register", {//http solicitation
+        const res = await fetch("https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/appi/register", {//http solicitation
             method: "POST", // Uso el metodo POST que es para agregar datos
             headers:{  
                 "Content-Type": "application/json" 
             },
             body: JSON.stringify({  //convierto la informacion a JSON
                 email,
-                password
+                password,
+                name,
+                surname,
+                cellphone
             }),
         })  
 
@@ -44,7 +50,7 @@ export default function Register() {
             </Head>
             <h1 className={styles.title}>Register</h1>
             <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
+            <div className={styles.formGroup}>
                     <input
                         type="email"
                         placeholder="Email"
@@ -72,6 +78,36 @@ export default function Register() {
                             {passwordVisible ? "Hide" : "Show"}
                         </button>
                     </div>
+                </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        className={styles.input}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="text"
+                        placeholder="Surname"
+                        className={styles.input}
+                        value={surname}
+                        onChange={(e) => setSurname(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="text"
+                        placeholder="Cellphone"
+                        className={styles.input}
+                        value={cellphone}
+                        onChange={(e) => setCellphone(e.target.value)}
+                        required
+                    />
                 </div>
                 {error && <p className={styles.error}>{error}</p>}
                 <button type="submit" className={styles.button}>
