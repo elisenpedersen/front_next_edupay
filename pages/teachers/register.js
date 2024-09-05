@@ -16,7 +16,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
-        const res = await fetch("https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/appi/register", {//http solicitation
+        const res = await fetch("https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/api/register", {//http solicitation
             method: "POST", // Uso el metodo POST que es para agregar datos
             headers:{  
                 "Content-Type": "application/json" 
