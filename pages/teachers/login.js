@@ -15,6 +15,10 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
+        console.log("API URL:", process.env.NEXT_PUBLIC_API_URL); // Add this line
+        const apiUrl = NEXT_PUBLIC_API_URL2 || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
+
+
 
         // todo with caniche solve this url with .env
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appi/login`, {
