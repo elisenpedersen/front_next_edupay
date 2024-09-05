@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
+import { login } from '../api/authEndpoints';
+
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function Login() {
@@ -17,31 +19,37 @@ export default function Login() {
         e.preventDefault(); // prevent the default behavior of the form
         // console.log("API URL:", process.env.NEXT_PUBLIC_API_URL); // Add this line
 
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
+        // const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
 
-
+        try {
+            const data = await login(email, password); // use the login function from authEndpoints.js
+            console.log('User logged in:', data.user);
+            router.push('/teachers/dashboard');
+        } catch (error) {
+            setError(error.message);
+        }
 
 
         // todo with caniche solve this url with .env
-        const res = await fetch(`${apiUrl}/api/login`, {
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        })
+        // const res = await fetch(`${apiUrl}/api/login`, {
+        //     method:"POST",
+        //     headers:{
+        //         "Content-Type":"application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         email,
+        //         password
+        //     })
+        // })
 
-        const data = await res.json()
+        // const data = await res.json()
 
-        if(res.ok){
-            console.log('User registered:', data.user);
-            router.push('/teachers/dashboard')
-        }else{
-            setError(data.error);
-        }
+        // if(res.ok){
+        //     console.log('User registered:', data.user);
+        //     router.push('/teachers/dashboard')
+        // }else{
+        //     setError(data.error);
+        // }
     }
 
     const togglePasswordVisibility = () => {
