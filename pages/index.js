@@ -11,12 +11,12 @@ export default function Home() {
             <h1 className={styles.title}>Main page</h1>
             <h2>
                 <Link href="/teachers/login" className={styles.link}>
-                    Login →
+                    Login for teachers →
                 </Link>
             </h2>
             <h2>
                 <Link href="/payment/pay" className={styles.link}>
-                    Payment Methods →
+                    Access my class →
                 </Link>
             </h2>
         </div>
