@@ -1,32 +1,20 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from '../../../../styles/Lessons.module.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import {fetchClassesData} from "@/pages/api/classEndpoint";
 
 export default function Lessons() {
     const router = useRouter();
     const { id } = router.query;
+
+    
     const [classes, setClasses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchClasses = async () => {
-            try {
-                const response = await fetch('https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/api/class/all');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch classes');
-                }
-                const data = await response.json();
-                setClasses(data);
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-        };
-
-        fetchClasses();
+        fetchClassesData(setClasses, setLoading, setError); //todo why they recomend .then
     }, []);
 
     if (loading) return <div>Loading...</div>;

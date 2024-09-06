@@ -1,20 +1,8 @@
 import React, {useEffect, useState} from 'react'
+import Button from "../../components/Button";
 import {useRouter} from "next/router";
-
-const Button = ({ children, className, ...props }) => (
-    <button
-        className={`px-4 py-2 rounded-md font-semibold text-white transition-all duration-300 ${className}`}
-        {...props}
-    >
-        {children}
-    </button>
-)
-
-const Icon = ({ children }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        {children}
-    </svg>
-)
+import { fetchClassesData } from '../api/classEndpoint';
+import Icon from "../../components/Icon";
 
 const ChevronRight = () => (
     <Icon>
@@ -103,27 +91,13 @@ export default function ListaClasesModerna() {
 
     const router = useRouter();
     const { id } = router.query;
+
     const [classes, setClasses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchClasses = async () => {
-            try {
-                const response = await fetch('https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/api/class/all');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch classes');
-                }
-                const data = await response.json();
-                setClasses(data);
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-        };
-
-        fetchClasses();
+        fetchClassesData(setClasses, setLoading, setError); //todo why they recomend .then
     }, []);
 
     if (loading) return <div>Loading...</div>;

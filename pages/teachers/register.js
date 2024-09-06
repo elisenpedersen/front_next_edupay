@@ -15,12 +15,13 @@ export default function Register() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [error, setError] = useState("");
     const router = useRouter()
+    const [cvu, setCvu] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
         try{
-            const data = await register(email, password, name, surname, cellphone);
+            const data = await register(email, password, name, surname, cellphone, cvu);
             router.push('/teachers/login'); //redirect to main page
         }catch(error){
             setError(error.message);
@@ -61,13 +62,13 @@ export default function Register() {
             </Head>
             <h1 className={styles.title}>Register</h1>
             <form onSubmit={handleSubmit}>
-            <div className={styles.formGroup}>
+                <div className={styles.formGroup}>
                     <input
                         type="email"
                         placeholder="Email"
                         className={styles.input}
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -120,20 +121,31 @@ export default function Register() {
                         required
                     />
                 </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="integer"
+                        placeholder="CVU"
+                        className={styles.input}
+                        value={cvu}
+                        onChange={(e) => setCvu(e.target.value)}
+                        required
+                    />
+                </div>
+
                 {error && <p className={styles.error}>{error}</p>}
                 <button type="submit" className={styles.button}>
                     Register
                 </button>
             </form>
             <div className={styles.linkWrapper}>
-                    <Link href="/teachers/login" className={styles.link}>
-                        Login
-                    </Link>
+                <Link href="/teachers/login" className={styles.link}>
+                    Login
+                </Link>
             </div>
             <div className={styles.linkWrapper}>
-                    <Link href="/" className={styles.link}>
-                        Go back to main page
-                    </Link>
+                <Link href="/" className={styles.link}>
+                    Go back to main page
+                </Link>
             </div>
         </div>
     );
