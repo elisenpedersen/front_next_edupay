@@ -5,7 +5,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL; // todo fix .env
 export const fetchClassesData = async (setClasses, setLoading, setError) => {
 
     try {
-        const response = await fetch('https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/api/class/all');
+        const response = await fetch(`${API_URL}/api/class/all`);
         if (!response.ok) {
             throw new Error('Failed to fetch classes');
         }
