@@ -21,8 +21,7 @@ export default function Register() {
 
         try{
             const data = await register(email, password, name, surname, cellphone);
-            console.log('User registered:', data.user);
-            router.push(''); //redirect to main page
+            router.push('/teachers/login'); //redirect to main page
         }catch(error){
             setError(error.message);
         }

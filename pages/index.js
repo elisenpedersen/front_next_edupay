@@ -10,11 +10,6 @@ export default function Home() {
             </Head>
             <h1 className={styles.title}>Main page</h1>
             <h2>
-                <Link href="/teachers/dashboard" className={styles.link}>
-                    Dashboard for noobs →
-                </Link>
-            </h2>
-            <h2>
                 <Link href="/teachers/login" className={styles.link}>
                     Login →
                 </Link>

@@ -22,9 +22,11 @@ export default function Login() {
         // const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
 
         try {
-            const data = await login(email, password); // use the login function from authEndpoints.js
-            console.log('User logged in:', data.user);
-            router.push('/teachers/dashboard');
+            const response = await login(email, password); // use the login function from authEndpoints.js
+            console.log(response.data.user.email); //mail del usuario
+            console.log(response.data.user.id); //id del usuario
+            const id = response.data.user.id
+            router.push(`/teachers/dashboard/${id}`); //redirect to dashboard
         } catch (error) {
             setError(error.message);
         }

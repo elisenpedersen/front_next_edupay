@@ -1,7 +1,7 @@
 // pages/dashboard/dashboard.js
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../../styles/Dashboard.module.css';
+import styles from '../../../styles/Dashboard.module.css';
 import { useRouter } from 'next/router';
 
 export default function Dashboard() {
@@ -20,7 +20,7 @@ export default function Dashboard() {
                 <p className={styles.cardContent}>
                     View and edit your profile information.
                 </p>
-                <Link href={`/dashboard/${id}/profile`} className={styles.link}>
+                <Link href={`/${id}/profile`} className={styles.link}>
                     Go to Profile → (not implemented yet)
                 </Link>
             </div>
@@ -30,7 +30,7 @@ export default function Dashboard() {
                 <p className={styles.cardContent}>
                     Manage your lessons.
                 </p>
-                <Link href={`/dashboard/${id}/settings`} className={styles.link}>
+                <Link href={`/${id}/settings`} className={styles.link}>
                     Go to Settings → (not implemented yet)
                 </Link>
             </div>
@@ -40,7 +40,7 @@ export default function Dashboard() {
                 <p className={styles.cardContent}>
                     View your statistics and metrics.
                 </p>
-                <Link href={`/dashboard/${id}/settings`} className={styles.link}>
+                <Link href={`/${id}/settings`} className={styles.link}>
                     Go to Analytics → (not implemented yet)
                 </Link>
             </div>
