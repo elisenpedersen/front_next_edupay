@@ -21,3 +21,17 @@ export async function createClass(classData) {
     }
     return await response.json();
 }
+
+export async function getAllClasses(classData) {
+    const response = await fetch(`${API_URL}/api/class/all`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(classData),
+    });
+    if (!response.ok) {
+        throw new Error('Failed to create class');
+    }
+    return await response.json();
+}

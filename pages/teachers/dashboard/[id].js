@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 export default function Dashboard() {
     const router = useRouter();
-    const { id } = router.query
+    const { id } = router.query // id of the teacher
 
     return (
         <div className={styles.container}>
@@ -30,8 +30,8 @@ export default function Dashboard() {
                 <p className={styles.cardContent}>
                     Manage your lessons.
                 </p>
-                <Link href={`/${id}/settings`} className={styles.link}>
-                    Go to Settings → (not implemented yet)
+                <Link href={`/teachers/dashboard/${id}/lessons`} className={styles.link}>
+                Go to Lessons →
                 </Link>
             </div>
 
