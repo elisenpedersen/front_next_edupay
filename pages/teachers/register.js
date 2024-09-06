@@ -1,8 +1,10 @@
 // pages/register.js
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
+import { register } from '../api/authEndpoints';
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -12,11 +14,19 @@ export default function Register() {
     const [cellphone, setCellphone] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [error, setError] = useState("");
+    const router = useRouter()
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
 
-        const res = await fetch("https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/api/register", {//http solicitation
+        try{
+            const data = await register(email, password, name, surname, cellphone);
+            console.log('User registered:', data.user);
+            router.push(''); //redirect to main page
+        }catch(error){
+            setError(error.message);
+        }
+        /*const res = await fetch("https://tough-kerrill-gagitogol-f492a8ba.koyeb.app/api/register", {//http solicitation
             method: "POST", // Uso el metodo POST que es para agregar datos
             headers:{  
                 "Content-Type": "application/json" 
@@ -28,7 +38,7 @@ export default function Register() {
                 surname,
                 cellphone
             }),
-        })  
+        /})  
 
         const data = await res.json(); //analizo la respuesta como JSON
 
@@ -36,13 +46,15 @@ export default function Register() {
             console.log('User registered:', data.user);
         } else {
             setError(data.error);
-        }
+        }*/
 
     }
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
+
+
     return (
         <div className={styles.container}>
             <Head>

@@ -17,3 +17,21 @@ export async function login(email, password) {
 
     return data;
 }
+
+export async function register(email, password, name, surname, cellphone) {
+    const resp = await fetch(`${API_URL}/api/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, password, name, surname, cellphone}),
+    });
+
+    const data = await resp.json();
+
+    if(!resp.ok){
+        throw new Error(data.error || 'Failed to register');
+    }
+
+    return data;
+}
