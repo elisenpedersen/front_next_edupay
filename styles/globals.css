@@ -1,4 +1,8 @@
 /* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f2f5;
@@ -24,6 +28,32 @@ a:hover {
   text-decoration: underline;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+  .class-card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105;
+  }
+
+  .class-card-header {
+    @apply bg-gradient-to-r from-indigo-500 to-purple-600 p-4;
+  }
+
+  .class-card-title {
+    @apply text-xl font-semibold text-white mb-1;
+  }
+
+  .class-card-subtitle {
+    @apply text-indigo-100 text-sm;
+  }
+
+  .class-card-body {
+    @apply p-6 space-y-4;
+  }
+
+  .class-card-info {
+    @apply flex items-center space-x-3 text-gray-600;
+  }
+
+  .class-card-button {
+    @apply w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 flex items-center justify-center space-x-2;
+  }
+}

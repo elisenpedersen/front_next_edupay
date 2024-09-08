@@ -1,28 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import Button from "../../components/Button";
-import {useRouter} from "next/router";
-import { fetchClassesData } from '../api/classEndpoint';
-import Icon from "../../components/Icon";
-
-const ChevronRight = () => (
-    <Icon>
-        <polyline points="9 18 15 12 9 6" />
-    </Icon>
-)
-
-const User = () => (
-    <Icon>
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-    </Icon>
-)
-
-const Mail = () => (
-    <Icon>
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-        <polyline points="22,6 12,13 2,6" />
-    </Icon>
-)
+import React, { useEffect, useState } from 'react'
+import { useRouter } from "next/router"
+import PageLayout from '../../components/layout/PageLayout'
+import {fetchClasses, fetchClassesData} from '../api/classEndpoint'
+import ClassList from "@/components/class/ClassList";
 
 /*
 const clases = [
@@ -84,9 +64,6 @@ const clases = [
 ]
      */
 
-
-
-
 export default function ListaClasesModerna() {
 
     const router = useRouter();
@@ -103,34 +80,9 @@ export default function ListaClasesModerna() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-8">
-            <h1 className="text-4xl font-bold text-center text-indigo-800 mb-12">Clases Disponibles</h1>
-            <div className="max-w-5xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {classes.map((clase, index) => (
-                    <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105">
-                        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-4">
-                            <h2 className="text-xl font-semibold text-white mb-1">{clase.subject}</h2>
-                            <p className="text-indigo-100 text-sm">{clase.dia}</p>
-                        </div>
-                        <div className="p-6 space-y-4">
-                            <div className="flex items-center space-x-3 text-gray-600">
-                                <User />
-                                <p className="text-sm">CVU: {clase.cvu}</p>
-                            </div>
-                            <div className="flex items-center space-x-3 text-gray-600">
-                                <Mail />
-                                <p className="text-sm">{clase.email_teacher}</p>
-                            </div>
-                            <Button className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 flex items-center justify-center space-x-2 group">
-                                <span>Acceder a la Clase</span>
-                                <ChevronRight />
-                            </Button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <PageLayout title="Clases Disponibles">
+            <ClassList classes={classes} />
+        </PageLayout>
     )
 }
