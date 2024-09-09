@@ -22,7 +22,12 @@ export default function Lessons() {
 
     return (
         <div className={styles.container}>
-            <h1>Lessons</h1>
+            <h1>My Lessons</h1>
+            <button className={styles.createButton}>
+                <Link href={`/teachers/dashboard/${id}/createClass`}>
+                    Create New Class
+                </Link>
+            </button>
             {classes.length > 0 ? (
                 <ul className={styles.classList}>
                     {classes.map((classItem) => (

@@ -1,4 +1,3 @@
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL; // todo fix .env
 
 
@@ -27,13 +26,13 @@ export async function fetchAllClasses() {
     return await response.json();
 }
 
-export async function createClass(classData) {
+export async function createClass({ subject, link_meet, date, time, description, teacher_id }) {
     const response = await fetch(`${API_URL}/api/class/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(classData),
+        body: JSON.stringify({ subject, link_meet, dia: date, horario: time, description, teacher_id }),
     });
     if (!response.ok) {
         throw new Error('Failed to create class');

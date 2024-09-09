@@ -2,6 +2,12 @@
     padding: 2rem;
 }
 
+.container h1 {
+    font-size: 2rem;
+    top: 10px;
+    font-weight: bold;
+}
+
 .classList {
     list-style-type: none;
     padding: 0;
@@ -26,4 +32,22 @@
     color: white;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.createButton {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.createButton a {
+    color: white;
+    text-decoration: none;
 }
