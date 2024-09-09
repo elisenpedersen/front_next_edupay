@@ -53,3 +53,17 @@ export async function getAllClasses(classData) {
     }
     return await response.json();
 }
+
+export async function getTeacherClasses(teacher_id) {
+    const response = await fetch(`${API_URL}/api/class/teacher_class`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ teacher_id }),
+    });
+    if (!response.ok) {
+        throw new Error('Failed to fetch classes');
+    }
+    return await response.json();
+}

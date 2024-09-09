@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from '../../../../styles/Lessons.module.css';
 import React, { useState, useEffect } from 'react';
-import {fetchClassesData} from "@/pages/api/classEndpoint";
+import {getTeacherClasses} from "@/pages/api/classEndpoint";
 
 export default function Lessons() {
     const router = useRouter();
@@ -14,8 +14,18 @@ export default function Lessons() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchClassesData(setClasses, setLoading, setError); //todo why they recomend .then
-    }, []);
+        if (id) {
+            getTeacherClasses(id)
+                .then((data) => {
+                    setClasses(data);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    setLoading(false);
+                });
+        }
+    }, [id]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
