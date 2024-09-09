@@ -35,7 +35,7 @@ export default function Home() {
             </main>
 
             <footer className="mt-16 text-center text-gray-500">
-                <p>&copy; 2023 EduPay. All rights reserved.</p>
+                <p>&copy; 2024 EduPay. All rights reserved.</p>
             </footer>
         </div>
     )
