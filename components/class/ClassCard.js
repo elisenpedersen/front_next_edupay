@@ -14,7 +14,8 @@ export default function ClassCard({ clase }) {
         const mailtoLink = `mailto:${clase.email_teacher}?subject=${subject}&body=${body}`;
 
         // Abrir el cliente de correo predeterminado
-        window.location.href = mailtoLink;
+        const newWindow = window.open('', '_blank');
+        newWindow.location.href = mailtoLink;
         
         setIsFirstButtonClicked(true);
     };
