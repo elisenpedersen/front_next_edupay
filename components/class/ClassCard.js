@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from '../UI/Button'
 import User from '../UI/User'
 import Mail from '../UI/Mail'
+import Dollar from '../UI/Dollar'
 import ChevronRight from '../UI/ChevronRight'
 
 export default function ClassCard({ clase }) {
@@ -26,13 +27,13 @@ export default function ClassCard({ clase }) {
                 <p className="class-card-subtitle">{clase.horario.slice(0, 5)} Hs</p>
             </div>
             <div className="class-card-body">
-                <div className="class-card-info">
-                    <User />
-                    <p className="text-sm">CVU: {clase.cvu}</p>
-                </div>
                 <div className="class-card-info"> 
                     <Mail />
                     <p className="text-sm">{clase.email_teacher}</p>
+                </div>
+                <div className="class-card-info">
+                    <Dollar />
+                    <p className="text-sm">CVU: {clase.cvu} <br /> Precio: ${clase.class_price}</p>
                 </div>
                 <div className="flex flex-col space-y-3 mt-4">
                     <button 

@@ -26,13 +26,13 @@ export async function fetchAllClasses() {
     return await response.json();
 }
 
-export async function createClass({ subject, link_meet, date, time, description, teacher_id }) {
+export async function createClass({ subject, link_meet, date, time, description, class_price, teacher_id }) {
     const response = await fetch(`${API_URL}/api/class/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ subject, link_meet, dia: date, horario: time, description, teacher_id }),
+        body: JSON.stringify({ subject, link_meet, dia: date, horario: time, description, class_price, teacher_id }),
     });
     if (!response.ok) {
         throw new Error('Failed to create class');

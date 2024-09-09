@@ -14,13 +14,14 @@ export default function CreateClass() {
     const [time, setTime] = useState("");
     const [description, setDescription] = useState("");
     const [link_meet, setLink_meet] = useState("");
+    const [class_price, setClass_price] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             // Enviar el ID del profesor en lugar del email
-            const data = await createClass({ subject, link_meet, date, time, description, teacher_id: id });
+            const data = await createClass({ subject, link_meet, date, time, description, class_price, teacher_id: id });
             router.push(`/teachers/dashboard/${id}`); // Redirect to the dashboard
         } catch (error) {
             setError(error.message);
@@ -80,6 +81,16 @@ export default function CreateClass() {
                         className={styles.input}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="number"
+                        placeholder="Class Price"
+                        className={styles.input}
+                        value={class_price}
+                        onChange={(e) => setClass_price(e.target.value)}
                         required
                     />
                 </div>
