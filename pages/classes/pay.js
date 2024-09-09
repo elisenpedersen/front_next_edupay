@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import PageLayout from '../../components/layout/PageLayout'
 import {fetchClasses, fetchClassesData} from '../api/classEndpoint'
 import ClassList from "@/components/class/ClassList";
+import Head from "next/head";
 
 /*
 const clases = [
@@ -82,6 +83,9 @@ export default function ListaClasesModerna() {
 
     return (
         <PageLayout title="Clases Disponibles">
+            <Head>
+                <title>Clases Disponibles</title>
+            </Head>
             <ClassList classes={classes} />
         </PageLayout>
     )
