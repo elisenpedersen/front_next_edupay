@@ -13,9 +13,7 @@ export default function ClassCard({ clase }) {
         const body = encodeURIComponent(`Hola,\n\nQuiero informarte que ya pague la clase de ${clase.subject} programada para el ${clase.dia} a las ${clase.horario}.\n\nSaludos,\n`);
         const mailtoLink = `mailto:${clase.email_teacher}?subject=${subject}&body=${body}`;
 
-        // Abrir el cliente de correo predeterminado
-        const newWindow = window.open('', '_blank');
-        newWindow.location.href = mailtoLink;
+        window.location.href = mailtoLink;
         
         setIsFirstButtonClicked(true);
     };
