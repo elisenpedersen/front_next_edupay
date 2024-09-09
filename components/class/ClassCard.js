@@ -23,6 +23,7 @@ export default function ClassCard({ clase }) {
         <div className="class-card">
             <div className="class-card-header">
                 <h2 className="class-card-title">{clase.subject}</h2>
+                <p className="class-card-subtitle">{clase.description}</p>
                 <p className="class-card-subtitle">{clase.dia}</p>
                 <p className="class-card-subtitle">{clase.horario.slice(0, 5)} Hs</p>
             </div>
