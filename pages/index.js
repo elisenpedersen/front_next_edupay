@@ -20,17 +20,21 @@ export default function Home() {
                 </p>
 
                 <div className="space-y-4">
-                    <Link href="/teachers/login" className="block">
-                        <button className="w-64 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                            Inicio de sesión
-                        </button>
-                    </Link>
+                    <div className="block">
+                        <Link href="/teachers/login">
+                            <button className="w-64 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                                Inicio de sesión
+                            </button>
+                        </Link>
+                    </div>
 
-                    <Link href="/classes/pay" className="block">
-                        <button className="w-64 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-                            Acceder a mi clase
-                        </button>
-                    </Link>
+                    <div className="block">
+                        <Link href="/classes/pay">
+                            <button className="w-64 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                                Acceder a mi clase
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </main>
 
