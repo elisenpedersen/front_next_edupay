@@ -34,20 +34,60 @@
     border-radius: 5px;
 }
 
-.createButton {
-    position: fixed;
-    top: 50px;
-    right: 50px;
+.buttonBase {
     padding: 10px 20px;
-    background-color: #0070f3;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-right: 10px; /* Añade espacio entre botones */
+}
+
+.createButton {
+    composes: buttonBase;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    background-color: #0070f3;
+    color: white;
 }
 
 .createButton a {
     color: white;
     text-decoration: none;
+}
+
+.joinButton {
+    composes: buttonBase;
+    background-color: #28a745; /* Color verde para "Join" */
+    color: white;
+}
+
+.joinButton:hover {
+    background-color: #218838;
+}
+
+.deleteButton {
+    composes: buttonBase;
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.deleteButton:hover {
+    background-color: #ff1a1a;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.deleteAnimation {
+    animation: shake 0.5s ease;
 }

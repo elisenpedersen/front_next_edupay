@@ -67,3 +67,20 @@ export async function getTeacherClasses(teacher_id) {
     }
     return await response.json();
 }
+
+export async function deleteClass(classId) {
+    const response = await fetch(`${API_URL}/api/class/delete`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ class_id: classId }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to delete class');
+    }
+
+    return await response.json();
+}

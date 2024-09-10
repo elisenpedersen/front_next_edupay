@@ -2,30 +2,44 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from '../../../../styles/Lessons.module.css';
 import React, { useState, useEffect } from 'react';
-import {getTeacherClasses} from "@/pages/api/classEndpoint";
+import { getTeacherClasses, deleteClass } from "@/pages/api/classEndpoint";
 
 export default function Lessons() {
     const router = useRouter();
     const { id } = router.query;
 
-    
     const [classes, setClasses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         if (id) {
-            getTeacherClasses(id)
-                .then((data) => {
-                    setClasses(data);
-                    setLoading(false);
-                })
-                .catch((err) => {
-                    setError(err.message);
-                    setLoading(false);
-                });
+            fetchClasses();
         }
     }, [id]);
+
+    const fetchClasses = () => {
+        getTeacherClasses(id)
+            .then((data) => {
+                setClasses(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
+            });
+    };
+
+    const handleDeleteClass = async (classId) => {
+        if (window.confirm('Are you sure you want to delete this class?')) {
+            try {
+                await deleteClass(classId);
+                fetchClasses();
+            } catch (err) {
+                setError(err.message);
+            }
+        }
+    };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -46,7 +60,18 @@ export default function Lessons() {
                             <p>Date: {new Date(classItem.dia).toLocaleDateString()}</p>
                             <p>Time: {classItem.horario}</p>
                             <p>Description: {classItem.description}</p>
-                            <a href={classItem.link_meet} target="_blank" rel="noopener noreferrer">Join Meet</a>
+                            <button 
+                                className={styles.joinButton}
+                                onClick={() => window.location.href = classItem.link_meet}
+                            >
+                                Join Meet
+                            </button>
+                            <button 
+                                className={styles.deleteButton}
+                                onClick={() => handleDeleteClass(classItem.id)}
+                            >
+                                Delete Class
+                            </button>
                         </li>
                     ))}
                 </ul>
