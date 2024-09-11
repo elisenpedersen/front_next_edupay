@@ -19,10 +19,10 @@ export default function Lessons() {
     }, [id]);
 
     const fetchClasses = () => {
+        setLoading(false); // juni usa wait no then
         getTeacherClasses(id)
             .then((data) => {
                 setClasses(data);
-                setLoading(false);
             })
             .catch((err) => {
                 setError(err.message);
