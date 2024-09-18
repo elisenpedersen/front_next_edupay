@@ -18,16 +18,16 @@ export default function Lessons() {
         }
     }, [id]);
 
-    const fetchClasses = () => {
-        setLoading(false); // juni usa wait no then
-        getTeacherClasses(id)
-            .then((data) => {
-                setClasses(data);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
-            });
+    const fetchClasses = async () => {
+        try {
+            setLoading(true); // Lo colocas al principio para iniciar la carga
+            const data = await getTeacherClasses(id);
+            setClasses(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false); // Aseguras que siempre se desactiva el loading
+        }
     };
 
     const handleDeleteClass = async (classId) => {
