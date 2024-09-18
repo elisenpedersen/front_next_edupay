@@ -60,18 +60,25 @@ export default function Lessons() {
                             <p>Date: {new Date(classItem.dia).toLocaleDateString()}</p>
                             <p>Time: {classItem.horario}</p>
                             <p>Description: {classItem.description}</p>
-                            <button 
+                            <button
                                 className={styles.joinButton}
                                 onClick={() => window.location.href = classItem.link_meet}
                             >
                                 Join Meet
                             </button>
-                            <button 
+                            <button
                                 className={styles.deleteButton}
                                 onClick={() => handleDeleteClass(classItem.id)}
                             >
                                 Delete Class
                             </button>
+                            <button
+                                className={styles.viewStudentsButton}
+                                onClick={() => window.location.href = `/teachers/dashboard/${id}/lessons/${classItem.id}/students`}
+                            >
+                                Ver Alumnos
+                            </button>
+
                         </li>
                     ))}
                 </ul>
@@ -79,7 +86,7 @@ export default function Lessons() {
                 <p>No classes found.</p>
             )}
             <Link href={`/teachers/dashboard/${id}`}>
-                Back to Dashboard
+            Back to Dashboard
             </Link>
         </div>
     );

@@ -91,3 +91,14 @@
 .deleteAnimation {
     animation: shake 0.5s ease;
 }
+.viewStudentsButton {
+    composes: buttonBase;
+    background-color: #0070f3;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viewStudentsButton:hover {
+    background-color: #005bb5; /* Un tono más oscuro de azul cuando se pasa el mouse */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño cuando se pasa el mouse */
+}

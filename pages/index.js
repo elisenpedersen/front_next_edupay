@@ -29,7 +29,7 @@ export default function Home() {
                     </div>
 
                     <div className="block">
-                        <Link href="/classes/pay">
+                        <Link href="/classes/available">
                             <button className="w-64 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
                                 Acceder a mi clase
                             </button>

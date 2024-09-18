@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
-import Button from '../UI/Button'
-import User from '../UI/User'
+import { useRouter } from 'next/router'
 import Mail from '../UI/Mail'
 import Dollar from '../UI/Dollar'
 import ChevronRight from '../UI/ChevronRight'
 
 export default function ClassCard({ clase }) {
+    const router = useRouter();
     const [isFirstButtonClicked, setIsFirstButtonClicked] = useState(false);
 
     const handleFirstButtonClick = () => {
-        
         const subject = encodeURIComponent(`Consulta sobre la clase: ${clase.subject}`);
         const body = encodeURIComponent(`Hola,\n\nQuiero informarte que ya pague la clase de ${clase.subject} programada para el ${clase.dia} a las ${clase.horario}.\n\nSaludos,\n`);
         const mailtoLink = `mailto:${clase.email_teacher}?subject=${subject}&body=${body}`;
 
         window.location.href = mailtoLink;
-        
         setIsFirstButtonClicked(true);
     };
 
+    const handleCardClick = () => {
+        router.push(`/classes/${clase.id}/classInfo`); // Redirige a la página de detalles
+    };
+
     return (
-        <div className="class-card">
+        <div className="class-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
             <div className="class-card-header">
                 <h2 className="class-card-title">{clase.subject}</h2>
                 <p className="class-card-subtitle">{clase.description}</p>
@@ -28,7 +30,7 @@ export default function ClassCard({ clase }) {
                 <p className="class-card-subtitle">{clase.horario.slice(0, 5)} Hs</p>
             </div>
             <div className="class-card-body">
-                <div className="class-card-info"> 
+                <div className="class-card-info">
                     <Mail />
                     <p className="text-sm">{clase.email_teacher}</p>
                 </div>
@@ -37,16 +39,16 @@ export default function ClassCard({ clase }) {
                     <p className="text-sm">CVU: {clase.cvu} <br /> Precio: ${clase.class_price}</p>
                 </div>
                 <div className="flex flex-col space-y-3 mt-4">
-                    <button 
+                    <button
                         className={`class-card-button py-2 px-4 rounded-md text-white `}
                         onClick={handleFirstButtonClick}
                     >
                         <span>Mandar al Mail</span>
                         <ChevronRight />
                     </button>
-                    <button 
+                    <button
                         className={`class-card-button py-2 px-4 rounded-md text-white ${!isFirstButtonClicked ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        onClick={() => window.open(clase.link_meet, '_blank')}
+                        onClick={(e) => { e.stopPropagation(); window.open(clase.link_meet, '_blank'); }}
                         disabled={!isFirstButtonClicked}
                     >
                         <span>Acceder a la Clase</span>

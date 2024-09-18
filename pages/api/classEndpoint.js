@@ -84,3 +84,19 @@ export async function deleteClass(classId) {
 
     return await response.json();
 }
+
+export const fetchClassById = async (classid, setClassDetail, setLoading, setError) => {
+    try {
+        setLoading(true);
+        const response = await fetch(`${API_URL}/api/class/${classid}`);
+        if (!response.ok) {
+            throw new Error('Error al obtener la clase');
+        }
+        const data = await response.json();
+        setClassDetail(data);
+        setLoading(false);
+    } catch (error) {
+        setError(error.message);
+        setLoading(false);
+    }
+};
