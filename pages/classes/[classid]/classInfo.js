@@ -3,6 +3,7 @@ import { fetchClassById } from '@/pages/api/classEndpoint';
 import React, { useEffect, useState } from 'react';
 import { Clock, Calendar, User, DollarSign, Mail } from 'lucide-react';
 import styles from '../../../styles/Students.module.css';
+import {donate} from "@/lib/payment";
 
 export default function ClassDetails() {
     const router = useRouter();
@@ -12,6 +13,7 @@ export default function ClassDetails() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [email, setEmail] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
 
     useEffect(() => {
         if (classid) {
@@ -25,6 +27,14 @@ export default function ClassDetails() {
     const handleReserve = () => {
         alert('Reservaste la clase con éxito!');
         // Here you would typically handle the reservation logic
+    };
+
+    const handlePayment = () => {
+        router.push('/mpTest');
+    };
+
+    const handleSubmitMp = ( amount, message) => {
+        donate( amount, message); // Llama a la función donate
     };
 
     return (
@@ -92,6 +102,38 @@ export default function ClassDetails() {
                                         Reservar clase
                                     </button>
                                 </div>
+
+
+                                <div className={styles.sidebar}>
+                                    <h2 className={styles.sectionTitle}>Pago con Mercado Pago</h2>
+                                    <p className={styles.descriptionText}></p>
+                                    <div className={styles.formGroup}>
+                                        <div className={styles.formGroup}>
+                                            <label htmlFor="email" className={styles.label}>
+                                                Tu correo electrónico
+                                            </label>
+                                            <div className={styles.inputWrapper}>
+                                                <Mail className={styles.inputIcon}/>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    id="email"
+                                                    className={styles.input}
+                                                    placeholder="tu@ejemplo.com"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            className={styles.button}
+                                            onClick={() => handleSubmitMp(classDetail.class_price, `Pago de la clase ${classDetail.subject}`)}                                        >
+                                            Pagar con Mercado Pago
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
