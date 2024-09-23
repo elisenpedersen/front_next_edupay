@@ -12,8 +12,9 @@ export default async function handler(req, res) {
             });
             res.status(200).json(response.data);
         } catch (error) {
-            console.error('Error al crear la preferencia:', error.response ? error.response.data : error);
-            res.status(500).json({ error: 'Error al crear la preferencia' });
+            console.error('Error al crear la preferencia1:', error.response ? error.response.data : error);
+            console.error('Error details:', error);
+            res.status(500).json({ error: 'Error al crear la preferencia2' });
         }
     } else {
         // Handle any other HTTP method
