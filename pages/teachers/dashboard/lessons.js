@@ -42,10 +42,10 @@ export default function Lessons() {
 
     return (
         <div className={styles.container}>
-            <h1>My Lessons</h1>
+            <h1>Mis clases</h1>
             <button className={styles.createButton}>
                 <Link href={`/teachers/dashboard/createClass`}>
-                    Create New Class
+                    Crear nueva clase
                 </Link>
             </button>
             {classes.length > 0 ? (
@@ -60,13 +60,13 @@ export default function Lessons() {
                                 className={styles.joinButton}
                                 onClick={() => window.location.href = classItem.link_meet}
                             >
-                                Join Meet
+                                Unirse a la sesión
                             </button>
                             <button
                                 className={styles.deleteButton}
                                 onClick={() => handleDeleteClass(classItem.id)}
                             >
-                                Delete Class
+                                Eliminar clase
                             </button>
                             {/*<button*/}
                             {/*    className={styles.viewStudentsButton}*/}
@@ -85,7 +85,7 @@ export default function Lessons() {
                                     });
                                 }}
                             >
-                                Copiar clase
+                                Copiar link a la información de la clase
                             </button>
                         </li>
                     ))}
