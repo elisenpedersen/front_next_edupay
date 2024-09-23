@@ -38,23 +38,6 @@ export default function ClassCard({ clase }) {
                     <Dollar />
                     <p className="text-sm">CVU: {clase.cvu} <br /> Precio: ${clase.class_price}</p>
                 </div>
-                <div className="flex flex-col space-y-3 mt-4">
-                    <button
-                        className={`class-card-button py-2 px-4 rounded-md text-white `}
-                        onClick={handleFirstButtonClick}
-                    >
-                        <span>Mandar al Mail</span>
-                        <ChevronRight />
-                    </button>
-                    <button
-                        className={`class-card-button py-2 px-4 rounded-md text-white ${!isFirstButtonClicked ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        onClick={(e) => { e.stopPropagation(); window.open(clase.link_meet, '_blank'); }}
-                        disabled={!isFirstButtonClicked}
-                    >
-                        <span>Acceder a la Clase</span>
-                        <ChevronRight />
-                    </button>
-                </div>
             </div>
         </div>
     )

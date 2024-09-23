@@ -3,9 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* styles/globals.css */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
+  background: linear-gradient(to bottom right, #ebf8ff, #ebf4ff);
   color: #333;
   margin: 0;
   padding: 20px;

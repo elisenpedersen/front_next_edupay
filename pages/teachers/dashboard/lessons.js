@@ -74,6 +74,19 @@ export default function Lessons() {
                             >
                                 Ver Alumnos
                             </button>
+                            <button
+                                className={styles.viewStudentsButton}
+                                onClick={() => {
+                                    const path = `${window.location.origin}/classes/${classItem.id}/classInfo`;
+                                    navigator.clipboard.writeText(path).then(() => {
+                                        alert('Link a la información de la clase copiado al portapapeles');
+                                    }).catch(err => {
+                                        console.error('Error al copiar ', err);
+                                    });
+                                }}
+                            >
+                                Copiar clase
+                            </button>
                         </li>
                     ))}
                 </ul>
