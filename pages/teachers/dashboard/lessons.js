@@ -84,6 +84,12 @@ export default function Lessons() {
                                     >
                                         Copiar link
                                     </button>
+                                    <button
+                                        className={styles.viewStudentsButton}
+                                        onClick={() => window.location.href = `/teachers/dashboard/lessons/${classItem.id}`}
+                                    >
+                                        Ver Alumnos
+                                    </button>
                                 </div>
                             </div>
                         </li>
