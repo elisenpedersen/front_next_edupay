@@ -68,12 +68,12 @@ export default function Lessons() {
                             >
                                 Delete Class
                             </button>
-                            <button
-                                className={styles.viewStudentsButton}
-                                onClick={() => window.location.href = `/teachers/dashboard/lessons/${classItem.id}`}
-                            >
-                                Ver Alumnos
-                            </button>
+                            {/*<button*/}
+                            {/*    className={styles.viewStudentsButton}*/}
+                            {/*    onClick={() => window.location.href = `/teachers/dashboard/lessons/${classItem.id}`}*/}
+                            {/*>*/}
+                            {/*    Ver Alumnos*/}
+                            {/*</button>*/}
                             <button
                                 className={styles.viewStudentsButton}
                                 onClick={() => {

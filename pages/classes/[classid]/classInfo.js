@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Clock, Calendar, User, DollarSign, Mail } from 'lucide-react';
 import styles from '../../../styles/Students.module.css';
 import {donate} from "@/lib/payment";
+import {formatearFecha, formatearHora} from "@/lib/date";
 
 export default function ClassDetails() {
     const router = useRouter();
@@ -54,11 +55,11 @@ export default function ClassDetails() {
                                     <div className={styles.detailsGrid}>
                                         <div className={styles.detailItem}>
                                             <Calendar className={styles.icon} />
-                                            <p><strong>Fecha:</strong> {classDetail.dia}</p>
+                                            <p><strong>Fecha:</strong> {formatearFecha(classDetail.dia)}</p>
                                         </div>
                                         <div className={styles.detailItem}>
                                             <Clock className={styles.icon} />
-                                            <p><strong>Hora:</strong> {classDetail.horario}</p>
+                                            <p><strong>Hora:</strong> {formatearHora(classDetail.horario)}</p>
                                         </div>
                                         <div className={styles.detailItem}>
                                             <User className={styles.icon} />

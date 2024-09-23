@@ -23,14 +23,7 @@ export default function ListaClasesModerna() {
             <Head>
                 <title>Clases Disponibles</title>
             </Head>
-            <div className="mb-6">
-                <Link href="/" passHref>
-                    <button className={styles.backButton}>
-                        <span> Volver a la página principal</span>
-                    </button>
-                </Link>
-            </div>
-            <ClassList classes={classes} />
+            <ClassList classes={classes}/>
         </PageLayout>
     )
 }
