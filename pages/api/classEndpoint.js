@@ -1,10 +1,10 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL; // todo fix .env
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
+import { jwtDecode } from 'jwt-decode';
 
 export const fetchClassesData = async (setClasses, setLoading, setError) => {
 
     try {
-        const response = await fetch(`${API_URL}/api/class/all`);
+        const response = await fetch(`${API_URL}/src/cl/all`);
         if (!response.ok) {
             throw new Error('Failed to fetch classes');
         }
@@ -17,20 +17,14 @@ export const fetchClassesData = async (setClasses, setLoading, setError) => {
     }
 };
 
-
-export async function fetchAllClasses() {
-    const response = await fetch(`${API_URL}/api/class/all`);
-    if (!response.ok) {
-        throw new Error('Failed to fetch classes');
-    }
-    return await response.json();
-}
-
-export async function createClass({ subject, link_meet, date, time, description, class_price, teacher_id }) {
-    const response = await fetch(`${API_URL}/api/class/create`, {
+export async function createClass({ subject, link_meet, date, time, description, class_price, token }) {
+    const decodedToken = jwtDecode(token);
+    const teacher_id = decodedToken.userId; // Ensure this matches the structure of your token
+    const response = await fetch(`${API_URL}/src/cl/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ subject, link_meet, dia: date, horario: time, description, class_price, teacher_id }),
     });
@@ -40,27 +34,17 @@ export async function createClass({ subject, link_meet, date, time, description,
     return await response.json();
 }
 
-export async function getAllClasses(classData) {
-    const response = await fetch(`${API_URL}/api/class/all`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(classData),
-    });
-    if (!response.ok) {
-        throw new Error('Failed to create class');
-    }
-    return await response.json();
-}
+export async function getTeacherClasses(token) {
+    const decodedToken = jwtDecode(token);
+    const teacher_email = decodedToken.email; // Ensure this matches the structure of your token
 
-export async function getTeacherClasses(teacher_id) {
-    const response = await fetch(`${API_URL}/api/class/teacher_class`, {
+    const response = await fetch(`${API_URL}/src/cl/lesson`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ teacher_id }),
+        body: JSON.stringify({ teacher_email }),
     });
     if (!response.ok) {
         throw new Error('Failed to fetch classes');
@@ -68,11 +52,12 @@ export async function getTeacherClasses(teacher_id) {
     return await response.json();
 }
 
-export async function deleteClass(classId) {
-    const response = await fetch(`${API_URL}/api/class/delete`, {
+export async function deleteClass(classId, token) {
+    const response = await fetch(`${API_URL}/src/cl/delete`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ class_id: classId }),
     });
@@ -88,7 +73,7 @@ export async function deleteClass(classId) {
 export const fetchClassById = async (classid, setClassDetail, setLoading, setError) => {
     try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/class/${classid}`);
+        const response = await fetch(`${API_URL}/src/cl/${classid}`);
         if (!response.ok) {
             throw new Error('Error al obtener la clase');
         }

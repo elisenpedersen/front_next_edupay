@@ -7,13 +7,12 @@ import {donate} from "@/lib/payment";
 
 export default function ClassDetails() {
     const router = useRouter();
-    const { id, classid } = router.query;
+    const { classid } = router.query;
 
     const [classDetail, setClassDetail] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [email, setEmail] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
 
     useEffect(() => {
         if (classid) {

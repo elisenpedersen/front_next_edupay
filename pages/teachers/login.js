@@ -6,53 +6,23 @@ import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
 import { login } from '../api/authEndpoints';
 
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
-
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [error, setError] = useState("");
-    const router = useRouter()
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent the default behavior of the form
-        // console.log("API URL:", process.env.NEXT_PUBLIC_API_URL); // Add this line
-
-        // const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
 
         try {
             const response = await login(email, password); // use the login function from authEndpoints.js
-            console.log(response.data.user.email); //mail del usuario
-            console.log(response.data.user.id); //id del usuario
-            const id = response.data.user.id
-            router.push(`/teachers/dashboard/${id}`); //redirect to dashboard
+            router.push(`/teachers/dashboard`); // redirect to dashboard without id
         } catch (error) {
             setError(error.message);
         }
-
-
-        // todo with caniche solve this url with .env
-        // const res = await fetch(`${apiUrl}/api/login`, {
-        //     method:"POST",
-        //     headers:{
-        //         "Content-Type":"application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         email,
-        //         password
-        //     })
-        // })
-
-        // const data = await res.json()
-
-        // if(res.ok){
-        //     console.log('User registered:', data.user);
-        //     router.push('/teachers/dashboard')
-        // }else{
-        //     setError(data.error);
-        // }
-    }
+    };
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);

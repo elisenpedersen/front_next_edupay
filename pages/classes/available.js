@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useRouter } from "next/router"
 import PageLayout from '../../components/layout/PageLayout'
-import {fetchClasses, fetchClassesData} from '../api/classEndpoint'
+import {fetchClassesData} from '../api/classEndpoint'
 import ClassList from "@/components/class/ClassList";
 import Head from "next/head";
 
 export default function ListaClasesModerna() {
 
-    const router = useRouter();
-    const { id } = router.query;
 
     const [classes, setClasses] = useState([]);
     const [loading, setLoading] = useState(true);
