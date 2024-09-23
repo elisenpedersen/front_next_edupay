@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../../../styles/Lessons.module.css';
+import styles from '../../../styles/ClassList.module.css';
 import React, { useState, useEffect } from 'react';
 import { getTeacherClasses, deleteClass } from "@/pages/api/classEndpoint";
 import {formatearHora} from "@/lib/date";
@@ -43,51 +43,49 @@ export default function Lessons() {
 
     return (
         <div className={styles.container}>
-            <h1>My Lessons</h1>
+            <h1 className={styles.title}>Mis clases</h1>
             <button className={styles.createButton}>
-                <Link href={`/teachers/dashboard/createClass`}>
-                    Create New Class
+                <Link href={`/teachers/dashboard/createClass`} className={styles.createLink}>
+                    Crear nueva clase
                 </Link>
             </button>
             {classes.length > 0 ? (
                 <ul className={styles.classList}>
                     {classes.map((classItem) => (
                         <li key={classItem.id} className={styles.classItem}>
-                            <h2>{classItem.subject}</h2>
-                            <p>Date: {new Date(classItem.dia).toLocaleDateString()}</p>
-                            <p>Time: {formatearHora(classItem.horario)}</p>
-                            <p>Description: {classItem.description}</p>
-                            <button
-                                className={styles.joinButton}
-                                onClick={() => window.location.href = classItem.link_meet}
-                            >
-                                Join Meet
-                            </button>
-                            <button
-                                className={styles.deleteButton}
-                                onClick={() => handleDeleteClass(classItem.id)}
-                            >
-                                Delete Class
-                            </button>
-                            {/*<button*/}
-                            {/*    className={styles.viewStudentsButton}*/}
-                            {/*    onClick={() => window.location.href = `/teachers/dashboard/lessons/${classItem.id}`}*/}
-                            {/*>*/}
-                            {/*    Ver Alumnos*/}
-                            {/*</button>*/}
-                            <button
-                                className={styles.viewStudentsButton}
-                                onClick={() => {
-                                    const path = `${window.location.origin}/classes/${classItem.id}/classInfo`;
-                                    navigator.clipboard.writeText(path).then(() => {
-                                        alert('Link a la información de la clase copiado al portapapeles');
-                                    }).catch(err => {
-                                        console.error('Error al copiar ', err);
-                                    });
-                                }}
-                            >
-                                Copiar clase
-                            </button>
+                            <div className={styles.classContent}>
+                                <h2 className={styles.className}>{classItem.subject}</h2>
+                                <p className={styles.classDescription}>Date: {new Date(classItem.dia).toLocaleDateString()}</p>
+                                <p className={styles.classDescription}>Time: {formatearHora(classItem.horario) }</p>
+                                <p className={styles.classDescription}>Description: {classItem.description}</p>
+                                <div className={styles.buttonGroup}>
+                                    <button
+                                        className={styles.joinButton}
+                                        onClick={() => window.location.href = classItem.link_meet}
+                                    >
+                                        Unirse a la sesión
+                                    </button>
+                                    <button
+                                        className={styles.deleteButton}
+                                        onClick={() => handleDeleteClass(classItem.id)}
+                                    >
+                                        Eliminar clase
+                                    </button>
+                                    <button
+                                        className={styles.viewButton}
+                                        onClick={() => {
+                                            const path = `${window.location.origin}/classes/${classItem.id}/classInfo`;
+                                            navigator.clipboard.writeText(path).then(() => {
+                                                alert('Link a la información de la clase copiado al portapapeles');
+                                            }).catch(err => {
+                                                console.error('Error al copiar ', err);
+                                            });
+                                        }}
+                                    >
+                                        Copiar link
+                                    </button>
+                                </div>
+                            </div>
                         </li>
                     ))}
                 </ul>

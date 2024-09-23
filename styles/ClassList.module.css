@@ -1,0 +1,164 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #e0f2fe, #e0e7ff);
+    padding: 2rem;
+}
+
+.content {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1e40af;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 5rem;
+    height: 0.25rem;
+    background-color: #3b82f6;
+}
+
+.createButton {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease-in-out;
+}
+
+.createButton:hover {
+    background-color: #2563eb;
+    transform: scale(1.05);
+}
+
+.createLink {
+    color: white; /* Cambia el color del enlace */
+    text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+.createLink:hover {
+    color: #f0f0f0; /* Cambia el color del enlace al pasar el ratón */
+}
+
+.classList {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.classItem {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.classItem:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.classContent {
+    padding: 1.5rem;
+    background-color: #f9fafb; /* Fondo suave */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra */
+    transition: all 0.3s ease-in-out;
+}
+
+.className {
+    font-size: 1.75rem; /* Aumentar tamaño de la fuente */
+    font-weight: 600;
+    color: #1e40af;
+    margin-bottom: 0.75rem; /* Aumentar espaciado inferior */
+}
+
+.classDescription {
+    color: #4b5563;
+    margin-bottom: 1.25rem; /* Aumentar espaciado inferior */
+    font-size: 1.125rem; /* Aumentar tamaño de la fuente */
+}
+
+.studentCount {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    margin-bottom: 1.25rem; /* Aumentar espaciado inferior */
+    font-size: 1.125rem; /* Aumentar tamaño de la fuente */
+}
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.joinButton {
+    background-color: #10b981;
+    color: white;
+    border-radius: 9999px; /* Hacer el botón más redondo */
+    padding: 0.75rem 1.5rem; /* Aumentar el padding */
+    display: inline-block; /* Asegurar que el contenido esté contenido */
+    text-align: center; /* Centrar el texto */
+}
+
+.joinButton:hover {
+    background-color: #059669;
+}
+
+.viewButton {
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 9999px; /* Hacer el botón más redondo */
+    padding: 0.75rem 1.5rem; /* Aumentar el padding */
+    display: inline-block; /* Asegurar que el contenido esté contenido */
+    text-align: center; /* Centrar el texto */
+}
+
+.viewButton:hover {
+    background-color: #2563eb;
+}
+
+.deleteButton {
+    background-color: #ef4444;
+    color: white;
+    border-radius: 9999px; /* Hacer el botón más redondo */
+    padding: 0.75rem 1.5rem; /* Aumentar el padding */
+    display: inline-block; /* Asegurar que el contenido esté contenido */
+    text-align: center; /* Centrar el texto */
+}
+
+.deleteButton:hover {
+    background-color: #dc2626;
+    animation: shake 0.5s ease;
+}
+
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
