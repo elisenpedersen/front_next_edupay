@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Header() {
     return (
-        <div>
+        <div style={{ width: '2%', float: 'left' }}>
             <Link href="/" passHref>
                 <img src="/images/libroEdu.png" alt="Logo" width={35} />
             </Link>
