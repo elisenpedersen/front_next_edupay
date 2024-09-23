@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styles from '../../../styles/Lessons.module.css';
 import React, { useState, useEffect } from 'react';
 import { getTeacherClasses, deleteClass } from "@/pages/api/classEndpoint";
+import {formatearHora} from "@/lib/date";
 
 export default function Lessons() {
     const [classes, setClasses] = useState([]);
@@ -42,10 +43,10 @@ export default function Lessons() {
 
     return (
         <div className={styles.container}>
-            <h1>Mis clases</h1>
+            <h1>My Lessons</h1>
             <button className={styles.createButton}>
                 <Link href={`/teachers/dashboard/createClass`}>
-                    Crear nueva clase
+                    Create New Class
                 </Link>
             </button>
             {classes.length > 0 ? (
@@ -54,19 +55,19 @@ export default function Lessons() {
                         <li key={classItem.id} className={styles.classItem}>
                             <h2>{classItem.subject}</h2>
                             <p>Date: {new Date(classItem.dia).toLocaleDateString()}</p>
-                            <p>Time: {classItem.horario}</p>
+                            <p>Time: {formatearHora(classItem.horario)}</p>
                             <p>Description: {classItem.description}</p>
                             <button
                                 className={styles.joinButton}
                                 onClick={() => window.location.href = classItem.link_meet}
                             >
-                                Unirse a la sesión
+                                Join Meet
                             </button>
                             <button
                                 className={styles.deleteButton}
                                 onClick={() => handleDeleteClass(classItem.id)}
                             >
-                                Eliminar clase
+                                Delete Class
                             </button>
                             {/*<button*/}
                             {/*    className={styles.viewStudentsButton}*/}
@@ -85,7 +86,7 @@ export default function Lessons() {
                                     });
                                 }}
                             >
-                                Copiar link a la información de la clase
+                                Copiar clase
                             </button>
                         </li>
                     ))}
