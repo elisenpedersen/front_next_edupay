@@ -25,8 +25,10 @@ export default function ClassDetails() {
     if (error) return <div className={`${styles.loadingError} ${styles.error}`}>Error: {error}</div>;
 
     const handleReserve = () => {
+        const existingEmails = JSON.parse(localStorage.getItem('reservedEmails')) || [];
+        existingEmails.push(email);
+        localStorage.setItem('reservedEmails', JSON.stringify(existingEmails));
         alert('Reservaste la clase con éxito!');
-        // Here you would typically handle the reservation logic
     };
 
     const handlePayment = () => {
@@ -109,9 +111,10 @@ export default function ClassDetails() {
                                     <p className={styles.descriptionText}></p>
                                     <div className={styles.formGroup}>
                                         <div className={styles.formGroup}>
-                                            <label htmlFor="email" className={styles.label}>
-                                                Tu correo electrónico
-                                            </label>
+
+                                         {/* <label htmlFor="email" className={styles.label}   Tu correo electrónico</label> */}
+
+                                            {/*
                                             <div className={styles.inputWrapper}>
                                                 <Mail className={styles.inputIcon}/>
                                                 <input
@@ -124,6 +127,7 @@ export default function ClassDetails() {
                                                     onChange={(e) => setEmail(e.target.value)}
                                                 />
                                             </div>
+                                            */}
                                         </div>
 
                                         <button

@@ -154,6 +154,21 @@
     animation: shake 0.5s ease;
 }
 
+.viewStudentsButton {
+    background-color: #8b5cf6;
+    color: white;
+    border-radius: 9999px; /* Hacer el botón más redondo */
+    padding: 0.75rem 1.5rem; /* Aumentar el padding */
+    display: inline-block; /* Asegurar que el contenido esté contenido */
+    text-align: center; /* Centrar el texto */
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.viewStudentsButton:hover {
+    background-color: #7c3aed;
+}
+
 
 @keyframes shake {
     0% { transform: translateX(0); }
