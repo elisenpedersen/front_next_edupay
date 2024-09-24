@@ -8,3 +8,9 @@ export default function Success() {
         </div>
     );
 }
+
+// add some functionability and improve design of the success and fail site after payment. 
+
+/*
+- add links to go back to my site, my classes, my 
+*/
