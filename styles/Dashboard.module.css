@@ -56,3 +56,23 @@
     }
 
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Añadido para espacio alrededor del contenido */
+}
+
+.signOutButton {
+    padding: 8px 10px; /* Ajusta el padding según sea necesario */
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute; /* Añadido */
+    right: 15px; /* Ajusta según sea necesario */
+    top: 15px; /* Ajusta según sea necesario */
+    font-size: 18px;
+}

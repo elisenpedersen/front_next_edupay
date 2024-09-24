@@ -9,7 +9,13 @@ export default function Dashboard() {
             <Head>
                 <title>Dashboard</title>
             </Head>
-            <h1 className={styles.title}>Dashboard</h1>
+            <h1 className={styles.title}>Dashboard
+            </h1>
+
+
+            <button className={styles.signOutButton} onClick={() => window.location.href = '/'}>
+                    Sign Out
+                </button>
 
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>Profile</h2>
