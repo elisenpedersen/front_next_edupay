@@ -1,88 +1,201 @@
-/* styles/Login.module.css */
 .container {
-    max-width: 400px;
-    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+}
+
+.formWrapper {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.logoWrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
 }
 
 .title {
-    color: #0070f3;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.formGroup {
-    margin-bottom: 15px;
+.subtitle {
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.button {
-    width: 100%;
-    padding: 10px;
-    background-color: #0070f3;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.inputGroup {
+    display: flex;
+    flex-direction: column;
 }
 
-.button:hover {
-    background-color: #0056b3;
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
 }
 
-.passwordContainer {
+.inputWrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.passwordContainer.input {
-    flex: 1;
+.input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-.toggleButton{
+.input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.inputIcon {
     position: absolute;
-    right: 10px;
+    left: 12px;
+    color: #999;
+    width: 20px;
+    height: 20px;
+}
+
+.toggleButton {
+    position: absolute;
+    right: 12px;
     background: none;
     border: none;
-    color: #0070f3;
     cursor: pointer;
-    font-size: 14px;
+    padding: 0;
 }
 
-.toggleButton:hover {
-    text-decoration: underline;
+.toggleIcon {
+    color: #999;
+    width: 20px;
+    height: 20px;
+}
+
+.button {
+    background: linear-gradient(135deg, #3B82F6 0%, #1E3A8A 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.error {
+    color: #e53e3e;
+    font-size: 14px;
+    margin-top: -10px;
 }
 
 .linkContainer {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5px;
-}
-
-.linkWrapper {
-    margin-top: 10px;
+    gap: 10px;
 }
 
 .link {
-    color: #0070f3;
-    text-decoration: nose;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
 }
 
 .link:hover {
-    text-decoration: underline;
+    color: #764ba2;
+}
+
+@media (max-width: 480px) {
+    .formWrapper {
+        padding: 30px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .input {
+        font-size: 14px;
+    }
+
+    .button {
+        font-size: 14px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    @media (max-width: 480px) {
+        .formWrapper {
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 22px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+        }
+
+        .input {
+            font-size: 13px;
+            padding: 10px 10px 10px 35px;
+        }
+
+        .inputIcon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .button {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
 }

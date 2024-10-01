@@ -1,0 +1,67 @@
+/* Fail.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    color: #0000FF;
+    background-color: #FFCCCC;
+}
+/*
+.container h1 {
+    font-size: 2em;
+    color: #FF0000;
+    margin-bottom: 20px;
+}
+*/
+.title {
+    font-size: 2.25rem; /* Equivalent to text-4xl */
+    font-weight: bold; /* Equivalent to font-bold */
+    color: #4a5568; /* Equivalent to text-indigo-800 */
+    margin-bottom: 2rem; /* Equivalent to mb-8 */
+}
+
+.text {
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    color: #718096; /* Equivalent to text-gray-600 */
+    margin-bottom: 3rem; /* Equivalent to mb-12 */
+    max-width: 24rem; /* Equivalent to max-w-md */
+    margin-left: auto; /* Equivalent to mx-auto */
+    margin-right: auto; /* Equivalent to mx-auto */
+}
+
+.errorIcon:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.fadingEffect {
+    box-shadow: 0 0 10px 10px rgba(255,0,0,0.5);
+    border-radius: 50%;
+}
+
+.circleContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.errorIcon, .fadingEffect {
+    position: absolute;
+    width: 70px; /* Adjust the size here */
+    height: 70px; /* Adjust the size here */
+}
+
+.whiteBox {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

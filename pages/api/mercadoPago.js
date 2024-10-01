@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         try {
             const response = await axios.post('https://api.mercadopago.com/checkout/preferences', req.body, {
                 headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_MP_ACCESS_TOKEN}`,
+                    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_MP_ACCESS_TOKEN}`,
                     'Content-Type': 'application/json'
                 }
             });
