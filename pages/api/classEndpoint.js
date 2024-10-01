@@ -61,18 +61,38 @@ export const fetchClassesData = async (setClasses, setLoading, setError) => {
 // }
 
 // New DB
-export async function createClass({ subject, link_meet, date, time, description, class_price, email_teacher, cvu, instance_count }) {
+export async function createClass({ subject, link_meet, date, time, description, class_price, email_teacher, instance_count, cvu, token }) {
+    const decoded = jwtDecode(token);
+    console.log('Decoded Token:', decoded);
+
+    const requestBody = { 
+        subject, 
+        link_meet, 
+        date, 
+        time, 
+        description, 
+        email_teacher, 
+        cvu, 
+        class_price: parseFloat(class_price), 
+        instance_count: parseInt(instance_count, 10) 
+    };
+    console.log('Request Body:', requestBody);
+
     const response = await fetch(`${API_URL}/src/cl/create`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ subject, link_meet, date, time, description, class_price, email_teacher, cvu, instance_count }),
+        body: JSON.stringify(requestBody),
     });
+
     if (!response.ok) {
         const errorDetails = await response.json();
+        console.error('Error Details:', errorDetails);
         throw new Error(`Failed to create class: ${errorDetails.message}`);
     }
+
     return await response.json();
 }
 

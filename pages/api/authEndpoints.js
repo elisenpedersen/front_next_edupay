@@ -5,6 +5,9 @@ export async function loginAuth0() {
     window.location.href = `${API_URL}/src/usr/login/auth0`;
 }
 
+export async function logoutAuth0() {
+    window.location.href = `${API_URL}/logout`;
+}
 
 export default function handler(req, res) {
     const authHeader = req.headers['authorization'];

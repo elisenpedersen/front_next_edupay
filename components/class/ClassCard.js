@@ -7,19 +7,11 @@ import {formatearFecha, formatearHora} from "@/lib/date";
 
 export default function ClassCard({ clase }) {
     const router = useRouter();
-    const [isFirstButtonClicked, setIsFirstButtonClicked] = useState(false);
-
-    const handleFirstButtonClick = () => {
-        const subject = encodeURIComponent(`Consulta sobre la clase: ${clase.subject}`);
-        const body = encodeURIComponent(`Hola,\n\nQuiero informarte que ya pague la clase de ${clase.subject} programada para el ${clase.dia} a las ${clase.horario}.\n\nSaludos,\n`);
-        const mailtoLink = `mailto:${clase.email_teacher}?subject=${subject}&body=${body}`;
-
-        window.location.href = mailtoLink;
-        setIsFirstButtonClicked(true);
-    };
-
     const handleCardClick = () => {
-        router.push(`/classes/${clase.id}/classInfo`); // Redirige a la página de detalles
+        console.log(clase);
+        console.log(clase.id);
+        console.log(formatearFecha(clase.date)); // Ejecutar la función para ver por qué la fecha se imprime mal
+        // router.push(`/classes/classInfo`); // Redirige a la página de detalles router.push(`/classes/${clase.id}/classInfo`);
     };
 
 
@@ -28,8 +20,8 @@ export default function ClassCard({ clase }) {
             <div className="class-card-header">
                 <h2 className="class-card-title">{clase.subject}</h2>
                 <p className="class-card-subtitle">{clase.description}</p>
-                <p className="class-card-subtitle">{formatearFecha(clase.dia)}</p>
-                <p className="class-card-subtitle">{formatearHora(clase.horario)} Hs</p>
+                 <p className="class-card-subtitle">{formatearFecha(clase.date)}</p>
+                <p className="class-card-subtitle">{formatearHora(clase.time)} Hs</p>
             </div>
             <div className="class-card-body">
                 <div className="class-card-info">

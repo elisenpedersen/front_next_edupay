@@ -9,6 +9,8 @@ export default function CreateClass() {
     const router = useRouter();
 
     const [subject, setSubject] = useState("");
+    const [email_teacher, setMail] = useState("");
+    const [instance_count, setInstance_count] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [description, setDescription] = useState("");
@@ -21,7 +23,7 @@ export default function CreateClass() {
         try {
             // Enviar el ID del profesor en lugar del email
             const token = localStorage.getItem('access_token');
-            const data = await createClass({ subject, link_meet, date, time, description, class_price, token });
+            const data = await createClass({ subject, link_meet, date, time, description, class_price, email_teacher, instance_count, token });
             router.push(`/teachers/dashboard/lessons`); // Redirect to the dashboard
         } catch (error) {
             setError(error.message);
@@ -42,6 +44,16 @@ export default function CreateClass() {
                         className={styles.input}
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="text"
+                        placeholder="Mail"
+                        className={styles.input}
+                        value={email_teacher}
+                        onChange={(e) => setMail(e.target.value)}
                         required
                     />
                 </div>
@@ -91,6 +103,16 @@ export default function CreateClass() {
                         className={styles.input}
                         value={class_price}
                         onChange={(e) => setClass_price(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className={styles.formGroup}>
+                    <input
+                        type="float"
+                        placeholder="Cuantity of instances"
+                        className={styles.input}
+                        value={instance_count}
+                        onChange={(e) => setInstance_count(e.target.value)}
                         required
                     />
                 </div>

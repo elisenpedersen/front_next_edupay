@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { logoutAuth0 } from '../api/authEndpoints';
+import { useRouter } from 'next/router';
 
 import {
     Home,
@@ -16,7 +18,8 @@ import {
     TrendingUp,
     DollarSign as DollarIcon,
     Clock,
-    CheckCircle
+    CheckCircle,
+    ChevronsUp
 } from 'lucide-react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -63,6 +66,8 @@ async function fetchTeacherDetails(teacherId) {
 
 export default function TeacherDashboard() {
 
+    const router = useRouter();
+
     const [teacherName, setTeacherName] = useState('');
 
     useEffect(() => {
@@ -98,6 +103,11 @@ export default function TeacherDashboard() {
         ],
     };
 
+    const handleLogout = async () => {
+        await logoutAuth0();
+        localStorage.removeItem('token');
+   };
+
     return (
         <div className={styles.dashboard}>
             <aside className={styles.sidebar}>
@@ -116,7 +126,7 @@ export default function TeacherDashboard() {
                 </nav>
                 <div className={styles.sidebarFooter}>
                     <SidebarItem icon={Settings} label="Settings" />
-                    <SidebarItem icon={LogOut} label="Logout" onClick={() => window.location.href = '/'} />
+                    <SidebarItem icon={LogOut} label="Logout" onClick={handleLogout} />
                 </div>
             </aside>
 
