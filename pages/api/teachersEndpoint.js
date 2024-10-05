@@ -1,4 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
+import jwt from 'jsonwebtoken';
 
 export async function createTeacher({ email, name, surname, cellphone, cvu }) {
     const response = await fetch(`${API_URL}/src/te/create`, {
@@ -44,12 +45,18 @@ export async function updateTeacher(teacherId, { email, name, surname, cellphone
     return await response.json();
 }
 
-export async function getTeacherById(teacherId) {
-    const response = await fetch(`${API_URL}/src/te/${teacherId}`, {
-        method: 'GET',
+export async function getTeacherByEmail() {
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    const email = decodedToken.email;
+
+    const response = await fetch(`${API_URL}/src/te/getTeacher`, {
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({email})
     });
     if (!response.ok) {
         const errorDetails = await response.json();

@@ -1,3 +1,4 @@
+import { AiFillHome } from 'react-icons/ai';
 import React, { useEffect, useState } from 'react';
 import PageLayout from '../../components/layout/PageLayout';
 import { fetchClassesData } from '../api/classEndpoint';
@@ -70,22 +71,24 @@ export default function ListaClasesModerna() {
                 <title>Clases Disponibles</title>
             </Head>
 
-            <div style={{ display: 'flex' }}>
-                {/* Class List Section */}
-                <div style={{ flex: 3 }}>
-                    <ClassList classes={filteredClasses} />
-                </div>
-
-                {/* Filters and Search Section */}
-                <div style={{ flex: 1, marginLeft: '20px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px' }}>
+                {/* Updated Filters and Search Section */}
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', width: '100%' }}>
                     {/* Date Filter */}
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginRight: '20px', flex: 1 }}>
                         <label htmlFor="dateFilter">Filter by Date: </label>
                         <select
                             id="dateFilter"
                             value={dateFilter}
                             onChange={(e) => setDateFilter(e.target.value)}
-                            style={{ width: '100%' }}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '10px',
+                                border: '1px solid #ccc',
+                                marginTop: '5px',
+                                fontSize: '16px'
+                            }}
                         >
                             <option value="All">All Dates</option>
                             <option value="Today">Today</option>
@@ -95,13 +98,20 @@ export default function ListaClasesModerna() {
                     </div>
 
                     {/* Subject Filter */}
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginRight: '20px', flex: 1 }}>
                         <label htmlFor="subjectFilter">Filter by Subject: </label>
                         <select
                             id="subjectFilter"
                             value={subjectFilter}
                             onChange={(e) => setSubjectFilter(e.target.value)}
-                            style={{ width: '100%' }}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '10px',
+                                border: '1px solid #ccc',
+                                marginTop: '5px',
+                                fontSize: '16px'
+                            }}
                         >
                             <option value="All">All Subjects</option>
                             <option value="Filosofia">Filosofia</option>
@@ -111,7 +121,7 @@ export default function ListaClasesModerna() {
                     </div>
 
                     {/* Search Box */}
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginRight: '20px', flex: 1 }}>
                         <label htmlFor="search">Search by Keyword: </label>
                         <input
                             type="text"
@@ -119,11 +129,18 @@ export default function ListaClasesModerna() {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Search by subject"
-                            style={{ width: '100%', padding: '8px' }}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '10px',
+                                border: '1px solid #ccc',
+                                marginTop: '5px',
+                                fontSize: '16px'
+                            }}
                         />
                     </div>
 
-                    {/* Search Button */}
+                    {/* Clear All Button */}
                     <button
                         onClick={() => {
                             setSearchTerm("");
@@ -131,17 +148,23 @@ export default function ListaClasesModerna() {
                             setSubjectFilter("All");
                         }}
                         style={{
-                            width: '100%',
-                            padding: '10px',
+                            padding: '10px 20px',
                             backgroundColor: '#4CAF50',
                             color: 'white',
                             border: 'none',
+                            borderRadius: '10px',
                             cursor: 'pointer',
-                            marginTop: '10px',
+                            fontSize: '16px',
+                            alignSelf: 'flex-end'
                         }}
                     >
-                        Reset Search
+                        Clear All
                     </button>
+                </div>
+
+                {/* Class List Section */}
+                <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
+                    <ClassList classes={filteredClasses} />
                 </div>
             </div>
         </PageLayout>

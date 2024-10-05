@@ -56,3 +56,21 @@ export async function login(email, password) {
 
     return data;
 }
+
+export async function Token() {
+    const response = await fetch(`${API_URL}/src/usr/token`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Include cookies in the request
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch token');
+    }
+
+    return data;
+}

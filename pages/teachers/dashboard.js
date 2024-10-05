@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { logoutAuth0 } from '../api/authEndpoints';
 import { useRouter } from 'next/router';
+import { getTeacherByEmail } from '../api/teachersEndpoint'
 
 import {
     Home,
@@ -52,9 +53,9 @@ const SidebarItem = ({ icon: Icon, label, onClick }) => (
     </button>
 );
 
-async function fetchTeacherDetails(teacherId) {
+async function fetchTeacherDetails() {
     try {
-        const teacher = await getTeacherById(teacherId);
+        const teacher = await getTeacherByEmail();
         const { name, cvu, email } = teacher;
         return { name, cvu, email };
     } catch (error) {

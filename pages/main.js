@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import cookie from 'cookie';
 import { useEffect } from 'react';
 
 export default function Test({ token }) {
@@ -9,6 +8,15 @@ export default function Test({ token }) {
             localStorage.setItem('token', token);
         }
     }, [token]);
+
+    const handleButtonClick = () => {
+        try {
+            const storedToken = localStorage.getItem('token');
+            console.log(storedToken);
+        } catch (error) {
+            console.error('Error fetching token from localStorage:', error);
+        }
+    };
 
     return (
         <div>
@@ -20,24 +28,27 @@ export default function Test({ token }) {
                 <p>This is a simple test page.</p>
                 <p>{token ? `Token recibido: ${token}` : 'No token found'}</p>
                 <div>
-                    <Link href="/classes/available">
+                    <Link href="/students/init">
                         Sigue tu camino como un estudiante
                     </Link>
                 </div>
                 <div>
-                    <Link href="/teachers/dashboard">
+                    <Link href="/teachers/init">
                         Sigue tu camino como un profesor
                     </Link>
                 </div>
+                <button onClick={handleButtonClick}>Fetch Token</button>
             </main>
         </div>
     );
 }
 
 export async function getServerSideProps(context) {
-    const { req } = context;
-    const cookies = cookie.parse(req.headers.cookie || '');
-    const token = cookies.token || null;
+    // const { req } = context;
+    // const cookies = cookie.parse(req.headers.cookie || '');
+    // const token = cookies.token || null;
+    const { query } = context;
+    const token = query.token || null;
 
     return {
         props: {
