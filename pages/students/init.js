@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { AcademicCapIcon, UserGroupIcon, BookOpenIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 export default function Home() {
     const [formData, setFormData] = useState({ nombre: '', apellido: '', telefono: '' })
@@ -38,9 +38,9 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
-            <header className="py-6 px-4 sm:px-6 lg:px-8">
-                <nav className="flex justify-between items-center">
-                    <Image src="/logo-placeholder.svg" alt="Logo" width={150} height={50} />
+            <header className="py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <h1 className="text-3xl font-bold text-indigo-900">EduPay</h1>
+                <nav>
                     <div className="flex space-x-4">
                         <a href="#" className="text-blue-600 hover:text-blue-800">Inicio</a>
                         <a href="#" className="text-blue-600 hover:text-blue-800">Profesores</a>
@@ -100,7 +100,11 @@ export default function Home() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <Image src="/placeholder.svg?height=400&width=600" alt="Estudiantes" layout="fill" objectFit="cover" />
+                           <img 
+                                src="/images/GrupoStudents.jpg" 
+                                alt="Grupo de estudiantes" 
+                                className="rounded-lg w-full h-auto"
+                            />
                         </motion.div>
                         <motion.div
                             className="relative h-64 sm:h-96 rounded-lg overflow-hidden"
@@ -108,7 +112,11 @@ export default function Home() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <Image src="/placeholder.svg?height=400&width=600" alt="Profesores" layout="fill" objectFit="cover" />
+                            <img 
+                                src="/images/TeacherWeb.jpg" 
+                                alt="Grupo de estudiantes" 
+                                className="rounded-lg w-full h-auto"
+                            />
                         </motion.div>
                     </div>
                 </section>

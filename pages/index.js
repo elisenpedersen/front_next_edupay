@@ -40,14 +40,9 @@ export default function Home() {
             {/* Hero Section */}
             <main className="flex justify-center items-center space-x-8 mt-8">
                 {/* Left Image */}
-                <div className="hidden md:block w-1/3">
-                    <Image
-                        src="/images/person_studying.png" // Make sure this image is in your public/images folder
-                        alt="Person studying"
-                        width={400}
-                        height={400}
-                        objectFit="contain"
-                    />
+                <div className="hidden md:block w-1/4">
+                    <img src="/images/PersonStuding.png" className="w-full h-auto" />
+
                 </div>
 
                 {/* Center Content */}

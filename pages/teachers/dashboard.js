@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { logoutAuth0 } from '../api/authEndpoints';
+import {getUserByEmail, logoutAuth0} from '../api/authEndpoints';
 import { useRouter } from 'next/router';
 import { getTeacherByEmail } from '../api/teachersEndpoint'
 
@@ -55,7 +55,7 @@ const SidebarItem = ({ icon: Icon, label, onClick }) => (
 
 async function fetchTeacherDetails() {
     try {
-        const teacher = await getTeacherByEmail();
+        const teacher = await getUserByEmail();
         const { name, cvu, email } = teacher;
         return { name, cvu, email };
     } catch (error) {
@@ -72,8 +72,7 @@ export default function TeacherDashboard() {
     const [teacherName, setTeacherName] = useState('');
 
     useEffect(() => {
-        const teacherId = "f8d905da-a49a-439b-82ed-933967fad676"; // Replace with TOKEN
-        fetchTeacherDetails(teacherId).then(details => {
+        fetchTeacherDetails().then(details => {
             setTeacherName(details.name);
         }).catch(error => {
             console.error('Error fetching teacher details:', error);

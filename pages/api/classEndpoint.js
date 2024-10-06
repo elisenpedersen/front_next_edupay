@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
 import { jwtDecode } from 'jwt-decode';
 
@@ -61,8 +63,10 @@ export const fetchClassesData = async (setClasses, setLoading, setError) => {
 // }
 
 // New DB
-export async function createClass({ subject, link_meet, date, time, description, class_price, email_teacher, instance_count, cvu, token }) {
+export async function createClass({ subject, link_meet, date, time, description, class_price, instance_count, cvu }) {
+    const token = localStorage.getItem('access_token')
     const decoded = jwtDecode(token);
+    const email = decoded.email
     console.log('Decoded Token:', decoded);
 
     const requestBody = { 
@@ -71,7 +75,7 @@ export async function createClass({ subject, link_meet, date, time, description,
         date, 
         time, 
         description, 
-        email_teacher, 
+        email_teacher : email, 
         cvu, 
         class_price: parseFloat(class_price), 
         instance_count: parseInt(instance_count, 10) 
@@ -115,13 +119,20 @@ export async function createClass({ subject, link_meet, date, time, description,
 // }
 
 // New DB
-export async function getTeacherClasses(email) {
-    const response = await fetch(`${API_URL}/src/cl/teacher/${email}/classes`, {
-        method: 'GET',
+export async function getTeacherClasses() {
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    const email = decodedToken.email;
+
+    const response = await fetch(`${API_URL}/src/cl/teacher/classes`, {
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({email})
     });
+
     if (!response.ok) {
         throw new Error('Failed to fetch classes');
     }

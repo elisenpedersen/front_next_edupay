@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, DollarSign, Users, Briefcase } from 'lucide-react'
 
@@ -43,13 +42,13 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="bg-white p-6 rounded-lg shadow-lg"
           >
-            <Image 
-              src="/placeholder.svg?height=200&width=300" 
-              alt="Estudiantes usando EduPay" 
-              width={300} 
-              height={200} 
-              className="rounded-lg mb-4"
-            />
+            <div className="mb-4">
+              <img 
+                src="/images/Finanzas.jpg" 
+                alt="Grupo de estudiantes" 
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
             <h3 className="text-xl font-semibold text-blue-800 mb-2">Simplifica tus finanzas</h3>
             <p className="text-gray-600">EduPay te ayuda a manejar tu dinero de forma inteligente mientras te enfocas en tus estudios.</p>
           </motion.div>
@@ -60,13 +59,13 @@ export default function AboutPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="bg-white p-6 rounded-lg shadow-lg"
           >
-            <Image 
-              src="/placeholder.svg?height=200&width=300" 
-              alt="Oportunidades laborales en EduPay" 
-              width={300} 
-              height={200} 
-              className="rounded-lg mb-4"
-            />
+            <div className="mb-4">
+              <img 
+                src="/images/Oportunidades.jpg" 
+                alt="Grupo de estudiantes" 
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
             <h3 className="text-xl font-semibold text-blue-800 mb-2">Encuentra oportunidades</h3>
             <p className="text-gray-600">Accede a trabajos de medio tiempo que se ajustan a tu horario y habilidades.</p>
           </motion.div>
@@ -77,13 +76,13 @@ export default function AboutPage() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="bg-white p-6 rounded-lg shadow-lg"
           >
-            <Image 
-              src="/placeholder.svg?height=200&width=300" 
-              alt="Comunidad de EduPay" 
-              width={300} 
-              height={200} 
-              className="rounded-lg mb-4"
-            />
+            <div className="mb-4">
+              <img 
+                src="/images/Comunidad.jpg" 
+                alt="Grupo de estudiantes" 
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
             <h3 className="text-xl font-semibold text-blue-800 mb-2">Únete a la comunidad</h3>
             <p className="text-gray-600">Conecta con otros estudiantes, comparte recursos y crece juntos.</p>
           </motion.div>
@@ -119,13 +118,6 @@ export default function AboutPage() {
           >
             {reviews.map((review) => (
               <motion.div key={review.id} className="min-w-[300px] bg-white p-6 rounded-lg shadow-lg mx-4">
-                <Image 
-                  src={review.image} 
-                  alt={review.name} 
-                  width={100} 
-                  height={100} 
-                  className="rounded-full mx-auto mb-4"
-                />
                 <h3 className="text-xl font-semibold text-blue-800 mb-2">{review.name}</h3>
                 <p className="text-gray-600">{review.text}</p>
               </motion.div>

@@ -8,10 +8,7 @@ import {formatearFecha, formatearHora} from "@/lib/date";
 export default function ClassCard({ clase }) {
     const router = useRouter();
     const handleCardClick = () => {
-        console.log(clase);
-        console.log(clase.id);
-        console.log(formatearFecha(clase.date)); // Ejecutar la función para ver por qué la fecha se imprime mal
-        // router.push(`/classes/classInfo`); // Redirige a la página de detalles router.push(`/classes/${clase.id}/classInfo`);
+        router.push(`/classes/${clase.id_class}/classInfo`); // Redirige a la página de detalles
     };
 
 

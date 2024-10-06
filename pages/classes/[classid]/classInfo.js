@@ -57,11 +57,11 @@ export default function ClassDetails() {
                                     <div className={styles.detailsGrid}>
                                         <div className={styles.detailItem}>
                                             <Calendar className={styles.icon} />
-                                            <p><strong>Fecha:</strong> {formatearFecha(classDetail.dia)}</p>
+                                            <p><strong>Fecha:</strong> {formatearFecha(classDetail.date)}</p>
                                         </div>
                                         <div className={styles.detailItem}>
                                             <Clock className={styles.icon} />
-                                            <p><strong>Hora:</strong> {formatearHora(classDetail.horario)}</p>
+                                            <p><strong>Hora:</strong> {formatearHora(classDetail.time)}</p>
                                         </div>
                                         <div className={styles.detailItem}>
                                             <User className={styles.icon} />

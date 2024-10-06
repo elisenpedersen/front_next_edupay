@@ -1,13 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { AcademicCapIcon, UserGroupIcon, PresentationChartBarIcon } from '@heroicons/react/24/outline'
 
+import { createTeacher } from '../api/teachersEndpoint'
+import jwt from 'jsonwebtoken';
+
+
 export default function TeacherHome() {
-    const [formData, setFormData] = useState({ nombre: '', apellido: '', especialidad: '', experiencia: '' })
+    const [formData, setFormData] = useState({ nombre: '', apellido: '', telefono: '', cvu: '' })
     const [isFormVisible, setIsFormVisible] = useState(false)
     const { ref, inView } = useInView({
         threshold: 0.1,
@@ -30,23 +33,38 @@ export default function TeacherHome() {
         setFormData(prevData => ({ ...prevData, [name]: value }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('Datos del formulario del profesor:', formData)
-        // Aquí puedes agregar la lógica para enviar los datos del formulario
+
+        const tokenL = localStorage.getItem("token");
+        const decode = jwt.decode(tokenL);
+        const emailD = decode.email;
+
+        try {
+            const response = await createTeacher({
+                email: emailD,
+                cvu: formData.cvu,
+                name: formData.nombre,
+                surname: formData.apellido,
+                cellphone: formData.telefono
+            });
+            console.log('Teacher created successfully:', response);
+        } catch (error) {
+            console.error('Error creating teacher:', error);
+        }
+        window.location.href = '/teachers/dashboard';
     }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-100 to-white">
-            <header className="py-6 px-4 sm:px-6 lg:px-8">
-                <nav className="flex justify-between items-center">
-                    <Image src="/logo-placeholder.svg" alt="Logo" width={150} height={50} />
-                    <div className="flex space-x-4">
-                        <a href="#" className="text-green-600 hover:text-green-800">Inicio</a>
-                        <a href="#" className="text-green-600 hover:text-green-800">Cursos</a>
-                        <a href="#" className="text-green-600 hover:text-green-800">Recursos</a>
-                    </div>
-                </nav>
+            <header className="py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <h1 className="text-3xl font-bold text-indigo-900">EduPay</h1>
+                <div className="flex space-x-4">
+                    <a href="#" className="text-green-600 hover:text-green-800">Inicio</a>
+                    <a href="#" className="text-green-600 hover:text-green-800">Cursos</a>
+                    <a href="#" className="text-green-600 hover:text-green-800">Recursos</a>
+                </div>
             </header>
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,7 +118,11 @@ export default function TeacherHome() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <Image src="/placeholder.svg?height=400&width=600" alt="Profesor enseñando" layout="fill" objectFit="cover" />
+                            <img 
+                                src="/images/AulaV.jpg" 
+                                alt="Grupo de estudiantes" 
+                                className="rounded-lg w-full h-auto"
+                            />
                         </motion.div>
                         <motion.div
                             className="relative h-64 sm:h-96 rounded-lg overflow-hidden"
@@ -108,7 +130,11 @@ export default function TeacherHome() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <Image src="/placeholder.svg?height=400&width=600" alt="Aula virtual" layout="fill" objectFit="cover" />
+                            <img 
+                                src="/images/GrupoStudents.jpg" 
+                                alt="Grupo de estudiantes" 
+                                className="rounded-lg w-full h-auto"
+                            />
                         </motion.div>
                     </div>
                 </section>
@@ -147,24 +173,24 @@ export default function TeacherHome() {
                             />
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="especialidad" className="block text-gray-700 font-bold mb-2">Especialidad</label>
+                            <label htmlFor="telefono" className="block text-gray-700 font-bold mb-2">Telefono</label>
                             <input
-                                type="text"
-                                id="especialidad"
-                                name="especialidad"
-                                value={formData.especialidad}
+                                type="number"
+                                id="telefono"
+                                name="telefono"
+                                value={formData.telefono}
                                 onChange={handleInputChange}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                                 required
                             />
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="experiencia" className="block text-gray-700 font-bold mb-2">Años de experiencia</label>
+                            <label htmlFor="cvu" className="block text-gray-700 font-bold mb-2">cvu</label>
                             <input
                                 type="number"
-                                id="experiencia"
-                                name="experiencia"
-                                value={formData.experiencia}
+                                id="cvu"
+                                name="cvu"
+                                value={formData.cvu}
                                 onChange={handleInputChange}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                                 required
@@ -192,3 +218,4 @@ export default function TeacherHome() {
         </div>
     )
 }
+//ToMerge2

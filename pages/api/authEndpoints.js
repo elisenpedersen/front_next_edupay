@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://tough-kerrill-gagitogol-f492a8ba.koyeb.app';
 
 
@@ -73,4 +75,30 @@ export async function Token() {
     }
 
     return data;
+}
+
+export async function getUserByEmail() {
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    const email = decodedToken.email;
+    console.log(email);
+
+    try {
+        const response = await fetch(`${API_URL}/src/auth/user?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user');
+        }
+
+        const user = await response.json();
+        return user;
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        throw error;
+    }
 }

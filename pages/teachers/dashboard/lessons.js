@@ -16,8 +16,7 @@ export default function Lessons() {
     const fetchClasses = async () => {
         try {
             setLoading(true);
-            const token = localStorage.getItem('access_token');
-            const data = await getTeacherClasses(token);
+            const data = await getTeacherClasses();
             setClasses(data);
         } catch (err) {
             setError(err.message);
@@ -74,7 +73,7 @@ export default function Lessons() {
                                     <button
                                         className={styles.viewButton}
                                         onClick={() => {
-                                            const path = `${window.location.origin}/classes/${classItem.id}/classInfo`;
+                                            const path = `${window.location.origin}/classes/${classItem.id_class}/classInfo`;
                                             navigator.clipboard.writeText(path).then(() => {
                                                 alert('Link a la información de la clase copiado al portapapeles');
                                             }).catch(err => {
