@@ -43,10 +43,8 @@ export default function Lessons() {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Mis clases</h1>
-            <button className={styles.createButton}>
-                <Link href={`/teachers/dashboard/createClass`} className={styles.createLink}>
-                    Crear nueva clase
-                </Link>
+            <button className={styles.createButton} onClick={() => window.location.href = '/teachers/dashboard/createClass'}>
+                Crear nueva clase
             </button>
             {classes.length > 0 ? (
                 <ul className={styles.classList}>
@@ -54,19 +52,18 @@ export default function Lessons() {
                         <li key={classItem.id} className={styles.classItem}>
                             <div className={styles.classContent}>
                                 <h2 className={styles.className}>{classItem.subject}</h2>
-                                <p className={styles.classDescription}>Date: {new Date(classItem.dia).toLocaleDateString()}</p>
-                                <p className={styles.classDescription}>Time: {formatearHora(classItem.horario) }</p>
+                                <p className={styles.classDescription}>Date: {new Date(classItem.date).toLocaleDateString()}</p>
+                                <p className={styles.classDescription}>Time: {formatearHora(classItem.time) }</p>
                                 <p className={styles.classDescription}>Description: {classItem.description}</p>
                                 <div className={styles.buttonGroup}>
                                     <button
                                         className={styles.joinButton}
-                                        onClick={() => window.location.href = classItem.link_meet}
-                                    >
+                                        onClick={() => window.location.href = classItem.link_meet}>
                                         Unirse a la sesión
                                     </button>
                                     <button
                                         className={styles.deleteButton}
-                                        onClick={() => handleDeleteClass(classItem.id)}
+                                        onClick={() => handleDeleteClass(classItem.id_class)}
                                     >
                                         Eliminar clase
                                     </button>
@@ -85,7 +82,7 @@ export default function Lessons() {
                                     </button>
                                     <button
                                         className={styles.viewStudentsButton}
-                                        onClick={() => window.location.href = `/teachers/dashboard/lessons/${classItem.id}`}
+                                        onClick={() => window.location.href = `/teachers/dashboard/lessons/${classItem.id_class}`}
                                     >
                                         Ver Alumnos
                                     </button>

@@ -47,6 +47,7 @@ export default function Test({ token }) {
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Teacher data:', data);
+                    window.location.href = '/teachers/dashboard'
                 } else {
                   window.location.href = '/teachers/init';
                 }
