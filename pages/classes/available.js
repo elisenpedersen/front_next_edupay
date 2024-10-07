@@ -170,3 +170,4 @@ export default function ListaClasesModerna() {
         </PageLayout>
     );
 }
+//MERGING

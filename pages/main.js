@@ -76,14 +76,14 @@ export default function Test({ token }) {
                 Continúa tu camino como...
             </motion.h1>
             <motion.div className="grid grid-cols-2 gap-4" {...animationAppear}>
-                <Link href="/students/init">
-                    <motion.div className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700" {...animationAppear}>
+                <Link href="/classes/available">
+                    <motion.div className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer" {...animationAppear}>
                         <Image src="/images/boy.png" alt="Student" width={200} height={200} />
                         <motion.p className="text-lg">Estudiante</motion.p>
                     </motion.div>
                 </Link>
                 <motion.div 
-                    className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700" 
+                    className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer" 
                     {...animationAppear}
                     onClick={handleTeacherClick}
                 >
