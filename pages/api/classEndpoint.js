@@ -200,6 +200,8 @@ export const fetchClassById = async (classid, setClassDetail, setLoading, setErr
                 'Content-Type': 'application/json'
             }
         });
+        
+        
         if (!response.ok) {
             throw new Error('Clase no encontrada');
         }
@@ -210,10 +212,12 @@ export const fetchClassById = async (classid, setClassDetail, setLoading, setErr
             id_class: data.id_class.toString(), // Convert id_class to String
             // Convert other BigInt fields if necessary
         };
-
-        console.log(responseData);
         setClassDetail(responseData);
         setLoading(false);
+
+        console.log(responseData);
+        
+        
     } catch (error) {
         console.error('Error fetching class:', error); // Log del error
         setError(error.message);

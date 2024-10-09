@@ -120,7 +120,7 @@ export default function ClassDetails() {
                                                 <input
                                                     type="email"
                                                     name="email"
-                                                    id="email"
+                                                    id="email""
                                                     className={styles.input}
                                                     placeholder="tu@ejemplo.com"
                                                     value={email}

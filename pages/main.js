@@ -3,17 +3,18 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion'
+import Cookies from 'js-cookie';
 
 import jwt from 'jsonwebtoken';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function Test({ token }) {
+export default function Test() {
     useEffect(() => {
-        if (token) {
-            localStorage.setItem('token', token);
-        }
-    }, [token]);
+        
+        localStorage.setItem('token', Cookies.get('token'));
+        
+    }, []);
 
     const handleButtonClick = () => {
         try {
@@ -26,8 +27,7 @@ export default function Test({ token }) {
 
     const handleTeacherClick = async () => {
         try {
-            const storedToken = localStorage.getItem('token');
-            console.log('Token:', storedToken);
+            const storedToken = Cookies.get('token');
 
             if (storedToken) {
                 // Decodifica el token para obtener el email
