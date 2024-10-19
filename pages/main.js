@@ -12,8 +12,9 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Test() {
     useEffect(() => {
         
-        localStorage.setItem('token', Cookies.get('token'));
-        
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get('token');
+localStorage.setItem('token', token);
     }, []);
 
     const handleButtonClick = () => {
@@ -27,7 +28,7 @@ export default function Test() {
 
     const handleTeacherClick = async () => {
         try {
-            const storedToken = Cookies.get('token');
+            const storedToken = localStorage.getItem('token');
 
             if (storedToken) {
                 // Decodifica el token para obtener el email
@@ -57,6 +58,39 @@ export default function Test() {
         }
     };
 
+    const handleStudentClick = async () => {
+        try {
+            const storedToken = localStorage.getItem('token');
+
+            if (storedToken) {
+                // Decodifica el token para obtener el email
+                const decodedToken = jwt.decode(storedToken);
+                const email = decodedToken.email;
+                console.log(email)
+
+                // Realiza la búsqueda para verificar si el email ya existe como estudiante
+                const response = await fetch(`${API_URL}/src/stu/getStudent`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${storedToken}`
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Student data:', data);
+                    window.location.href = '/students/dashboard'
+                } else {
+                    window.location.href = '/students/init';
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching token from localStorage or fetching student data:', error);
+        }
+    }
+
     const animationFall = {
         initial: { opacity: 0, y: -50 },
         animate: { opacity: 1, y: 0 },
@@ -76,13 +110,11 @@ export default function Test() {
                 Continúa tu camino como...
             </motion.h1>
             <motion.div className="grid grid-cols-2 gap-4" {...animationAppear}>
-                <Link href="/classes/available">
-                    <motion.div className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer" {...animationAppear}>
+                    <motion.div className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer" {...animationAppear} onClick={handleStudentClick}>
                         <Image src="/images/boy.png" alt="Student" width={200} height={200} />
                         <motion.p className="text-lg">Estudiante</motion.p>
                     </motion.div>
-                </Link>
-                <motion.div 
+                <motion.div
                     className="flex flex-col items-center justify-center p-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer" 
                     {...animationAppear}
                     onClick={handleTeacherClick}
