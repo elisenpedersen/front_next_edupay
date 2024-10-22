@@ -108,6 +108,10 @@ export default function TeacherDashboard() {
         localStorage.removeItem('token');
    };
 
+    const handleSettings = () => {
+        router.push('/teachers/tSettings');
+    }
+
     return (
         <div className={styles.dashboard}>
             <aside className={styles.sidebar}>
@@ -125,7 +129,7 @@ export default function TeacherDashboard() {
                     </ul>
                 </nav>
                 <div className={styles.sidebarFooter}>
-                    <SidebarItem icon={Settings} label="Settings" />
+                    <SidebarItem icon={Settings} label="Settings" onClick={handleSettings}/>
                     <SidebarItem icon={LogOut} label="Logout" onClick={handleLogout} />
                 </div>
             </aside>

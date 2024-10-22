@@ -5,6 +5,7 @@ import { Clock, Calendar, User, DollarSign, Mail } from 'lucide-react';
 import styles from '../../../styles/Students.module.css';
 import {donate} from "@/lib/payment";
 import {formatearFecha, formatearHora} from "@/lib/date";
+import { createPayment, simulatePayment } from '@/pages/api/taloEndpoint';
 
 export default function ClassDetails() {
     const router = useRouter();
@@ -14,7 +15,9 @@ export default function ClassDetails() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [email, setEmail] = useState('');
-
+    const [mpLoading, setMpLoading] = useState(false);
+    const [taloLoading, setTaloLoading] = useState(false);
+    const [simulateLoading, setSimulateLoading] = useState(false);
     useEffect(() => {
         if (classid) {
             fetchClassById(classid, setClassDetail, setLoading, setError);
@@ -31,12 +34,39 @@ export default function ClassDetails() {
         alert('Reservaste la clase con éxito!');
     };
 
+    const handleTaloPayment = async () => {
+        setTaloLoading(true);
+        try {
+            const payment = await createPayment(process.env.NEXT_PUBLIC_TALO_USER_ID, classDetail.class_price, classDetail.link_meet, classDetail.subject);
+            router.push(payment.payment_url);
+        } catch (error) {
+            console.error('Error al procesar el pago con Talo:', error);
+            alert('Hubo un error al procesar el pago con Talo. Por favor, intente nuevamente.');
+        } finally {
+            setTaloLoading(false);
+        }
+    };
+
     const handlePayment = () => {
         router.push('/mpTest');
     };
 
-    const handleSubmitMp = ( amount, message) => {
-        donate( amount, message); // Llama a la función donate
+    const handleSubmitMp = async (amount, message) => {
+        setMpLoading(true);
+        try {
+            await donate(amount, message);
+        } catch (error) {
+            console.error('Error al procesar el pago con Mercado Pago:', error);
+            alert('Hubo un error al procesar el pago con Mercado Pago. Por favor, intente nuevamente.');
+        } finally {
+            setMpLoading(false);
+        }
+    };
+
+    const handleSimulatePayment = async () => {
+        setSimulateLoading(true);
+        await simulatePayment(process.env.NEXT_PUBLIC_TALO_USER_ID, classDetail.class_price);
+        setSimulateLoading(false);
     };
 
     return (
@@ -107,33 +137,24 @@ export default function ClassDetails() {
 
 
                                 <div className={styles.sidebar}>
-                                    <h2 className={styles.sectionTitle}>Pago con Mercado Pago</h2>
+                                    <h2 className={styles.sectionTitle}>Medios de pago</h2>
                                     <p className={styles.descriptionText}></p>
                                     <div className={styles.formGroup}>
-                                        <div className={styles.formGroup}>
-
-                                         {/* <label htmlFor="email" className={styles.label}   Tu correo electrónico</label> */}
-
-                                            {/*
-                                            <div className={styles.inputWrapper}>
-                                                <Mail className={styles.inputIcon}/>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    id="email""
-                                                    className={styles.input}
-                                                    placeholder="tu@ejemplo.com"
-                                                    value={email}
-                                                    onChange={(e) => setEmail(e.target.value)}
-                                                />
-                                            </div>
-                                            */}
-                                        </div>
-
                                         <button
                                             className={styles.button}
-                                            onClick={() => handleSubmitMp(classDetail.class_price, `Pago de la clase ${classDetail.subject}`)}                                        >
-                                            Pagar con Mercado Pago
+                                            onClick={() => handleSubmitMp(classDetail.class_price, `Pago de la clase ${classDetail.subject}`)}
+                                            disabled={mpLoading}
+                                        >
+                                            {mpLoading ? 'Procesando...' : 'Pagar con Mercado Pago'}
+                                        </button>
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <button
+                                            className={styles.button}
+                                            onClick={handleTaloPayment}
+                                            disabled={taloLoading}
+                                        >
+                                            {taloLoading ? 'Procesando...' : 'Pagar con Talo'}
                                         </button>
                                     </div>
                                 </div>
