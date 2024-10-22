@@ -52,7 +52,6 @@ const SidebarItem = ({ icon: Icon, label, onClick }) => (
         <span>{label}</span>
     </button>
 );
-
 async function fetchTeacherDetails() {
     try {
         const teacher = await getUserByEmail();
@@ -111,6 +110,7 @@ export default function TeacherDashboard() {
     const handleSettings = () => {
         router.push('/teachers/tSettings');
     }
+
 
     return (
         <div className={styles.dashboard}>
